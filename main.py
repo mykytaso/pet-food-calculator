@@ -1,11 +1,12 @@
 from fastapi import FastAPI
+from starlette.responses import HTMLResponse
 
 app = FastAPI()
 
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 async def root():
-    return {"message": "Hello World"}
+    return "<div style='text-align: center;'><h1>Hello World!</h1></div>"
 
 
 @app.get("/hello/{name}")
