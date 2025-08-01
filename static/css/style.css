@@ -1,0 +1,15 @@
+.hidden {
+  display: none !important;
+}
+
+input::placeholder {
+  color: #bbbbbb !important;
+}
+
+input {
+  text-align: center !important;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+}
