@@ -1,0 +1,28 @@
+.hidden {
+  display: none !important;
+}
+
+input::placeholder {
+  color: #8ea6fe !important;
+}
+
+input {
+  text-align: center !important;
+  color: #5e80fd !important;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  background-color: #FEC2D9 !important;
+}
+
+
+
+.form-check-input:checked {
+  background-color: #5e80fd;  /* Background track color */
+  border-color: #5e80fd;
+}
+
+.box-shadow {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
