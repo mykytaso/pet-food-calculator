@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #5e80fd;">
   <div class="container-fluid">
-    <a class="navbar-brand" style="color: #ffffff; font-size: 30px; font-weight: 900;" href={% url "calculator:calculator" %}><i class="bi bi-twitter"></i> Pet Food Calculator</a>
+    <a class="navbar-brand" style="color: #ffffff; font-size: 30px; font-weight: 900;" href={% url "calculator:index" %}><i class="bi bi-twitter"></i> Pet Food Calculator</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -27,21 +27,30 @@
 
 
         <li class="nav-item dropdown">
+
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Your Pets
           </a>
-          <ul class="dropdown-menu">
+
+          <div class="dropdown-menu rounded-4">
             {% for pet in user.pets.all %}
-              <li><a class="dropdown-item" href={% url "calculator:pet_detail" pet_id=pet.id %}>{{ pet.name }}</a></li>
+              <div style="margin-bottom: 10px; margin-left: 20px">
+                <a class="dropdown-link-custom" href={% url "calculator:pet_detail" pet_id=pet.id %}>
+                  {{ pet.name }}
+                </a>
+              </div>
             {% endfor %}
-{#            <li><a class="dropdown-item" href="#">Action</a></li>#}
-{#            <li><a class="dropdown-item" href="#">Another action</a></li>#}
-            <li><hr class="dropdown-divider"></li>
-            <li>
+
+            <hr class="dropdown-divider">
+
+            <div>
               <!-- Add Pet Button -->
-              {% include "includes/add_pet_button.html" %}
-            </li>
-          </ul>
+              <div style="margin-left: 20px">
+                {% include "includes/add_pet_button.html" %}
+              </div>
+            </div>
+
+          </div>
         </li>
 
 

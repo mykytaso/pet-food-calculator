@@ -65,3 +65,9 @@ body {
   outline: none;
   border: none !important;
 }
+
+.dropdown-link-custom {
+  color: var(--primary-color) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
