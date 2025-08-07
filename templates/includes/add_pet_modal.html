@@ -1,0 +1,26 @@
+<!-- Modal Add Pet -->
+<div class="modal fade" id="petModal" tabindex="-1" aria-labelledby="newPetModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-5 font-default">
+      <div class="modal-header">
+        <h1 class="modal-title">Add Pet</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form method="POST" action="{% url 'calculator:pet_create' %}">
+          {% csrf_token %}
+          <div>
+            <label class="form-label" for="pet_name">Pet Name</label>
+            <input class="form-control"  id="pet_name" type="text" name="pet_name" required>
+          </div>
+
+          <div>
+            <input class="btn mx-1 btn-outline-primary btn-sm rounded-4" type="submit" value="Save">
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

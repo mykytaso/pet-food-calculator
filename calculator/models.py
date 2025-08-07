@@ -8,6 +8,7 @@ class Pet(models.Model):
     owner = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="pets"
     )
+    is_default = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -18,7 +19,7 @@ class Pet(models.Model):
         constraints = [models.UniqueConstraint(
             fields=["owner", "name"], name="unique_pet_per_owner"
         )]
-        ordering = ["-created_at"]
+        ordering = ["created_at"]
 
 
 class Food(models.Model):
@@ -27,9 +28,9 @@ class Food(models.Model):
     meals = models.PositiveIntegerField(default=1)
     meal_size = models.PositiveIntegerField()
 
-    package_size = models.PositiveIntegerField(null=True, blank=True)
+    package_size = models.PositiveIntegerField(default=0)
     package_price = models.DecimalField(
-        max_digits=10, decimal_places=2, null=True, blank=True,
+        max_digits=10, decimal_places=2, default=0.00
     )
 
     pet = models.ForeignKey(
