@@ -3,8 +3,6 @@
   --light-color: #8ea6fe;
 }
 
-
-
 .hidden {
   display: none !important;
 }
@@ -70,4 +68,17 @@ body {
   color: var(--primary-color) !important;
   font-weight: 600 !important;
   text-decoration: none !important;
+}
+
+.food-form-label {
+  width: 120px;
+  font-weight: 600;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.food-form-field {
+    width: 80px;
+    border-radius: 20px;
+    border-color: #5e80fd;
 }
