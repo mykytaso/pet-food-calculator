@@ -4,53 +4,22 @@
     <h1>{{ pet.name }} </h1>
   </div>
   <div class="col-auto">
-    <a href="#" style="font-size: 30px; color: var(--primary-color);">
+    <a href="{% url 'calculator:pet_update' pk=pet.id %}" style="font-size: 30px; color: var(--primary-color);">
       <i class="bi bi-pencil-square"></i>
     </a>
   </div>
 </div>
 
-
-  <div class="row justify-content-center">
-    <div class="col-auto">
-      <!-- Add Food Button -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFoodModal">
-        Add Food
-      </button>
-
-      <!-- Add Food Modal -->
-      <div class="modal fade" id="addFoodModal" tabindex="-1" aria-labelledby="newFoodModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content rounded-5 font-default">
-            <div class="modal-header">
-              <h1 class="modal-title">Add Food</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-              <form method="POST" action="{% url 'calculator:food_create' %}">
-                {% csrf_token %}
-
-                <input type="hidden" name="pet_id" value="{{ pet.id }}">
-
-                <div>
-                  <label class="form-label" for="food_name">Food Name</label>
-                  <input class="form-control"  id="food_name" type="text" name="food_name" required>
-                </div>
-
-                <div>
-                  <input class="btn mx-1 btn-outline-primary btn-sm rounded-4" type="submit" value="Save">
-                </div>
-              </form>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+<!-- Add Food -->
+<div class="row justify-content-center">
+  <div class="col-auto">
+    <form method="POST" action="{% url 'calculator:food_create' %}">
+      {% csrf_token %}
+      <input type="hidden" name="pet_id" value="{{ pet.id }}">
+      <button class="btn btn-primary" type="submit">Add food</button>
+    </form>
   </div>
-
+</div>
 
 <div class="row justify-content-center font-default">
   {% for food in pet.foods.all %}
@@ -74,44 +43,54 @@
         </form>
       </div>
 
+      <form method="post" action="{% url 'calculator:food_update' food_id=food.id %}" class="col-auto">
+        {% csrf_token %}
+        <input type="hidden" name="pet_id" value="{{ pet.id }}" />
+        <input type="hidden" name="food_id" value="{{ food.id }}" />
 
-      <div class="d-flex align-items-center gap-2 px-3">
-        <label class="text-nowrap mb-0 field-text" style="width: 120px; font-weight: 600;">Food</label>
-        <input class="form-control form-control-sm rounded-4" placeholder="name" value="{{ food.name }}" aria-label="Food name" style="width: 80px; border-color: #5e80fd;" />
-      </div>
+        <div class="d-flex align-items-center gap-2 px-3">
+          <label class="food-form-label">Food</label>
+          <input name="food_name" class="form-control form-control-sm food-form-field" placeholder="name" value="{{ food.name }}" aria-label="Food name" />
+        </div>
 
-      <div class="d-flex align-items-center gap-2 mt-2 px-3">
-        <label class="text-nowrap mb-0 field-text" style="width: 120px; font-weight: 600;">Food kcal/kg</label>
-        <input class="form-control form-control-sm rounded-4" placeholder="kcal/kg" value="{{ food.kcal }}" aria-label="Kcal per kg" style="width: 80px; border-color: #5e80fd;" />
-      </div>
+        <div class="d-flex align-items-center gap-2 mt-2 px-3">
+          <label class="food-form-label">Food kcal/kg</label>
+          <input name="kcal" class="form-control form-control-sm food-form-field" placeholder="kcal/kg" value="{{ food.kcal }}" aria-label="Kcal per kg" />
+        </div>
 
-      <div class="d-flex align-items-center gap-2 mt-2 px-3">
-        <label class="text-nowrap mb-0" style="width: 120px; font-weight: 600;">Meals per day</label>
-        <input class="form-control form-control-sm rounded-4 mealsNumber" placeholder="meals" value="{{ food.meals }}" aria-label="Meals per day" style="width: 80px; border-color: #5e80fd;" />
-      </div>
+        <div class="d-flex align-items-center gap-2 mt-2 px-3">
+          <label class="food-form-label">Meals per day</label>
+          <input name="meals" class="form-control form-control-sm food-form-field mealsNumber" placeholder="meals" value="{{ food.meals }}" aria-label="Meals per day" />
+        </div>
 
-      <div class="d-flex align-items-center gap-2 mt-2 px-3">
-        <label class="text-nowrap mb-0" style="width: 120px; font-weight: 600;">Meal size</label>
-        <input class="form-control form-control-sm rounded-4 portionSize" placeholder="grams" value="{{ food.meal_size }}" aria-label="Meal size" style="width: 80px; border-color: #5e80fd;" />
-      </div>
+        <div class="d-flex align-items-center gap-2 mt-2 px-3">
+          <label class="food-form-label">Meal size</label>
+          <input name="meal_size" class="form-control form-control-sm food-form-field portionSize" placeholder="grams" value="{{ food.meal_size }}" aria-label="Meal size" />
+        </div>
 
-      <div class="d-flex align-items-center gap-2 mt-2 px-3 cost-field">
-        <label class="text-nowrap mb-0" style="width: 120px; font-weight: 600;">Package size</label>
-        <input class="form-control form-control-sm rounded-4 packageSize" placeholder="grams" value="{{ food.package_size }}" aria-label="Package size" style="width: 80px; border-color: #5e80fd;" />
-      </div>
+        <div class="d-flex align-items-center gap-2 mt-2 px-3 cost-field">
+          <label class="food-form-label">Package size</label>
+          <input name="package_size" class="form-control form-control-sm food-form-field packageSize" placeholder="grams" value="{{ food.package_size }}" aria-label="Package size" />
+        </div>
 
-      <div class="d-flex align-items-center gap-2 mt-2 px-3 cost-field">
-        <label class="text-nowrap mb-0" style="width: 120px; font-weight: 600;">Package price</label>
-        <input class="form-control form-control-sm rounded-4 price" placeholder="$" value="{{ food.package_price }}" aria-label="Package price" style="width: 80px; border-color: #5e80fd;" />
-      </div>
+        <div class="d-flex align-items-center gap-2 mt-2 px-3 cost-field">
+          <label class="food-form-label">Package price</label>
+          <input name="package_price" class="form-control form-control-sm food-form-field price" placeholder="$" value="{{ food.package_price }}" aria-label="Package price" />
+        </div>
 
+        <button type="submit" class="btn p-0 text-decoration-none delete-row text-secondary align-self-end mb-3">
+          Update Food
+        </button>
+      </form>
+
+      <!-- Results -->
       <div class="row" style="margin-top: 20px;">
         <div class="col" style="padding-top: 20px; padding-bottom: 20px; font-weight: 700; border-top: 1px solid #8ea6fe;">
           <div class="px-3">
-            <strong>Kcal per day:</strong> <span class="kcal-output">0</span>
+            <strong>Kcal per day:</strong> <span class="kcal-output">{{ food.kcal_per_day }}</span>
           </div>
           <div class="cost-field px-3">
-            <strong>Cost per day:</strong> <span class="cost-output">0</span>
+            <strong>Cost per day:</strong> <span class="cost-output">{{ food.cost_per_day }}</span>
           </div>
         </div>
       </div>
@@ -119,8 +98,6 @@
     </div>
   {% endfor %}
 </div>
-
-
 
 {% else %}
   <div class="row">
@@ -136,8 +113,6 @@
     </div>
   </div>
 {% endif %}
-
-
 
 
 
@@ -208,27 +183,27 @@
 {##}
 {#      <div class="d-flex align-items-center gap-2 px-3">#}
 {#        <label class="text-nowrap mb-0 field-text" style="width: 120px; font-weight: 600;">Food kcal/kg</label>#}
-{#        <input class="form-control form-control-sm rounded-4 kcalPerKg" placeholder="kcal/kg" aria-label="Kcal per kg" style="width: 80px; border-color: #5e80fd;" />#}
+{#        <input class="form-control form-control-sm rounded-4 kcalPerKg" placeholder="kcal/kg" aria-label="Kcal per kg" />#}
 {#      </div>#}
 {##}
 {#      <div class="d-flex align-items-center gap-2 mt-2 px-3">#}
 {#        <label class="text-nowrap mb-0" style="width: 120px; font-weight: 600;">Meals per day</label>#}
-{#        <input class="form-control form-control-sm rounded-4 mealsNumber" placeholder="meals" aria-label="Meals per day" style="width: 80px; border-color: #5e80fd;" />#}
+{#        <input class="form-control form-control-sm rounded-4 mealsNumber" placeholder="meals" aria-label="Meals per day" />#}
 {#      </div>#}
 {##}
 {#      <div class="d-flex align-items-center gap-2 mt-2 px-3">#}
 {#        <label class="text-nowrap mb-0" style="width: 120px; font-weight: 600;">Meal size</label>#}
-{#        <input class="form-control form-control-sm rounded-4 portionSize" placeholder="grams" aria-label="Meal size" style="width: 80px; border-color: #5e80fd;" />#}
+{#        <input class="form-control form-control-sm rounded-4 portionSize" placeholder="grams" aria-label="Meal size" />#}
 {#      </div>#}
 {##}
 {#      <div class="d-flex align-items-center gap-2 mt-2 px-3 cost-field">#}
 {#        <label class="text-nowrap mb-0" style="width: 120px; font-weight: 600;">Package size</label>#}
-{#        <input class="form-control form-control-sm rounded-4 packageSize" placeholder="grams" aria-label="Package size" style="width: 80px; border-color: #5e80fd;" />#}
+{#        <input class="form-control form-control-sm rounded-4 packageSize" placeholder="grams" aria-label="Package size" />#}
 {#      </div>#}
 {##}
 {#      <div class="d-flex align-items-center gap-2 mt-2 px-3 cost-field">#}
 {#        <label class="text-nowrap mb-0" style="width: 120px; font-weight: 600;">Package price</label>#}
-{#        <input class="form-control form-control-sm rounded-4 price" placeholder="$" aria-label="Package price" style="width: 80px; border-color: #5e80fd;" />#}
+{#        <input class="form-control form-control-sm rounded-4 price" placeholder="$" aria-label="Package price" />#}
 {#      </div>#}
 {##}
 {#      <div class="row" style="margin-top: 20px;">#}
