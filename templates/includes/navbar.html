@@ -12,30 +12,23 @@
         <li class="nav-item">
           <a class="nav-link text-white" href={% url "users:login" %}>Login</a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link text-white" href={% url "users:register" %}>Register</a>
         </li>
-
-
-
 
         <li class="nav-item">
           <a class="nav-link text-white" href={% url "users:user-detail" %}>Profile</a>
         </li>
 
-
-
-
         <li class="nav-item dropdown">
-
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Your Pets
           </a>
-
           <div class="dropdown-menu rounded-4">
             {% for pet in user.pets.all %}
               <div style="margin-bottom: 10px; margin-left: 20px">
-                <a class="dropdown-link-custom" href={% url "calculator:pet_detail" pet_id=pet.id %}>
+                <a class="dropdown-link-custom" href={% url "calculator:pet_detail" pk=pet.id %}>
                   {{ pet.name }}
                 </a>
               </div>
@@ -49,17 +42,13 @@
                 {% include "includes/add_pet_button.html" %}
               </div>
             </div>
-
           </div>
         </li>
-
 
       </ul>
     </div>
   </div>
 </nav>
-
-
 
 <!-- Add Pet Modal -->
 {% include "includes/add_pet_modal.html" %}
