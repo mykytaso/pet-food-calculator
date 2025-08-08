@@ -14,10 +14,14 @@ class IndexView(View):
         if not pet:
             pet = Pet.objects.filter(owner=current_user.id).first()
 
-        return render(request, "calculator/index.html", {
-            "current_user": current_user,
-            "pet": pet,
-        })
+        return render(
+            request,
+            "calculator/index.html",
+            {
+                "current_user": current_user,
+                "pet": pet,
+            },
+        )
 
 
 class PetCreateView(LoginRequiredMixin, View):
@@ -27,18 +31,22 @@ class PetCreateView(LoginRequiredMixin, View):
         is_default = request.POST.get("is_default") == "on"
 
         if is_default:
-            Pet.objects.filter(owner=user, is_default=True).update(
-                is_default=False)
+            Pet.objects.filter(owner=user, is_default=True).update(is_default=False)
 
         new_pet = Pet.objects.create(name=pet_name, owner=user, is_default=is_default)
 
         return redirect("calculator:pet_detail", pet_id=new_pet.id)
 
+
 class PetDetailView(View):
     def get(self, request, pet_id, *args, **kwargs):
         current_user = request.user
         pet = Pet.objects.get(id=pet_id)
-        return render(request, "calculator/pet_detail.html", {"current_user": current_user, "pet": pet})
+        return render(
+            request,
+            "calculator/pet_detail.html",
+            {"current_user": current_user, "pet": pet},
+        )
 
 
 class FoodCreateView(LoginRequiredMixin, View):
@@ -51,15 +59,11 @@ class FoodCreateView(LoginRequiredMixin, View):
         meals = 3
         meal_size = 13
 
-        pet.foods.create(
-            name=food_name,
-            kcal=kcal,
-            meals=meals,
-            meal_size=meal_size
-        )
+        pet.foods.create(name=food_name, kcal=kcal, meals=meals, meal_size=meal_size)
 
         messages.success(request, "Food created successfully!")
         return redirect("calculator:pet_detail", pet_id=pet.id)
+
 
 class FoodDeleteView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
