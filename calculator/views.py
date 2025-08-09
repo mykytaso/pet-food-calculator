@@ -48,7 +48,6 @@ class PetDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
         return Pet.objects.filter(owner=self.request.user)
 
-
 class PetUpdateView(LoginRequiredMixin, UpdateView):
     model = Pet
     fields = ["name", "is_default"]
@@ -91,20 +90,27 @@ class FoodCreateView(LoginRequiredMixin, View):
 
 
 class FoodUpdateView(LoginRequiredMixin, View):
-    def post(self, request, *args, **kwargs):
-        food_id = request.POST.get("food_id")
+    def post(self, request, food_id, *args, **kwargs):
         food = get_object_or_404(Food, pk=food_id)
 
+        # Update fields
         food.name = request.POST.get("food_name", food.name)
-        food.kcal = request.POST.get("kcal", food.kcal)
-        food.meals = request.POST.get("meals", food.meals)
-        food.meal_size = request.POST.get("meal_size", food.meal_size)
-        food.package_size = request.POST.get("package_size", food.package_size)
-        food.package_price = request.POST.get("package_price", food.package_price)
-
+        food.kcal = int(request.POST.get("kcal") or food.kcal or 0)
+        food.meals = int(request.POST.get("meals") or food.meals or 0)
+        food.meal_size = int(request.POST.get("meal_size") or food.meal_size or 0)
+        food.package_size = int(request.POST.get("package_size") or food.package_size or 0)
+        food.package_price = float(request.POST.get("package_price") or food.package_price or 0)
         food.save()
 
+        # htmx request → re-render single card
+        if request.headers.get("Hx-Request") == "true":
+            return render(request, "includes/food_card.html", {
+                "food": food,
+                "pet": food.pet
+            })
+
         return redirect("calculator:pet_detail", pk=food.pet.id)
+
 
 
 class FoodDeleteView(LoginRequiredMixin, View):

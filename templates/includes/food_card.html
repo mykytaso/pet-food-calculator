@@ -1,0 +1,103 @@
+<div class="col-auto m-3 bg-white rounded-5 food-row box-shadow" id="food-card-{{ food.id }}">
+
+  <!-- Delete Food -->
+  <div class="row align-items-center justify-content-between px-3" style="margin-top: 18px; margin-bottom: 14px;">
+    <div class="col-auto">
+      <i class="bi bi-fork-knife"></i>
+    </div>
+    <form method="post" action="{% url 'calculator:food_delete' %}" class="col-auto">
+      {% csrf_token %}
+      <input type="hidden" name="pet_id" value="{{ pet.id }}">
+      <input type="hidden" name="food_id" value="{{ food.id }}">
+      <button type="submit" class="btn p-0 text-decoration-none delete-row text-secondary align-self-end mb-3">
+        <span style="color: var(--primary-color);">
+          <i class="bi bi-x-lg"></i>
+        </span>
+      </button>
+    </form>
+  </div>
+
+  <!-- Food Form -->
+  <form
+    hx-post="{% url 'calculator:food_update' food_id=food.id %}"
+    hx-trigger="change"
+    hx-target="#food-card-{{ food.id }}"
+    hx-swap="outerHTML"
+  >
+
+    {% csrf_token %}
+    <input type="hidden" name="pet_id" value="{{ pet.id }}" />
+    <input type="hidden" name="food_id" value="{{ food.id }}" />
+
+    <div class="d-flex align-items-center gap-2 px-3">
+      <label class="food-form-label">Food</label>
+      <input name="food_name"
+             autocomplete="off"
+             class="form-control form-control-sm food-form-field"
+             placeholder="name"
+             value="{{ food.name }}" aria-label="Food name" />
+    </div>
+
+    <div class="d-flex align-items-center gap-2 mt-2 px-3">
+      <label class="food-form-label">Food kcal/kg</label>
+      <input name="kcal"
+             autocomplete="off"
+             class="form-control form-control-sm food-form-field"
+             placeholder="kcal/kg"
+             value="{{ food.kcal }}"
+             aria-label="Kcal per kg" />
+    </div>
+
+    <div class="d-flex align-items-center gap-2 mt-2 px-3">
+      <label class="food-form-label">Meals per day</label>
+      <input name="meals"
+             autocomplete="off"
+             class="form-control form-control-sm food-form-field mealsNumber"
+             placeholder="meals"
+             value="{{ food.meals }}"
+             aria-label="Meals per day" />
+    </div>
+
+    <div class="d-flex align-items-center gap-2 mt-2 px-3">
+      <label class="food-form-label">Meal size</label>
+      <input name="meal_size"
+             autocomplete="off"
+             class="form-control form-control-sm food-form-field portionSize"
+             placeholder="grams"
+             value="{{ food.meal_size }}"
+             aria-label="Meal size" />
+    </div>
+
+    <div class="d-flex align-items-center gap-2 mt-2 px-3 cost-field">
+      <label class="food-form-label">Package size</label>
+      <input name="package_size"
+             autocomplete="off"
+             class="form-control form-control-sm food-form-field packageSize"
+             placeholder="grams"
+             value="{{ food.package_size }}"
+             aria-label="Package size" />
+    </div>
+
+    <div class="d-flex align-items-center gap-2 mt-2 px-3 cost-field">
+      <label class="food-form-label">Package price</label>
+      <input name="package_price"
+             autocomplete="off"
+             class="form-control form-control-sm food-form-field price"
+             placeholder="$" value="{{ food.package_price }}"
+             aria-label="Package price" />
+    </div>
+  </form>
+
+  <!-- Results -->
+  <div class="row" style="margin-top: 20px;">
+    <div class="col" style="padding-top: 20px; padding-bottom: 20px; font-weight: 700; border-top: 1px solid #8ea6fe;">
+      <div class="px-3">
+        <strong>Kcal per day:</strong> <span class="kcal-output">{{ food.kcal_per_day }}</span>
+      </div>
+      <div class="cost-field px-3">
+        <strong>Cost per day:</strong> <span class="cost-output">{{ food.cost_per_day }}</span>
+      </div>
+    </div>
+  </div>
+
+</div>

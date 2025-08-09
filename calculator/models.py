@@ -36,9 +36,11 @@ class Food(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
     def kcal_per_day(self):
         return round((self.kcal / 1000) * self.meal_size * self.meals, 2)
 
+    @property
     def cost_per_day(self):
         if self.package_size > 0 and self.package_price > 0:
             return round(
