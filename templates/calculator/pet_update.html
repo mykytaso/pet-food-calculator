@@ -6,9 +6,19 @@
 
   <div class="row justify-content-center align-items-center my-4">
     <div class="col-auto">
-      <form method="post">{% csrf_token %}
-          {{ form.as_p }}
-          <input type="submit" value="Update">
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update">
+      </form>
+    </div>
+  </div>
+
+  <div class="row justify-content-center align-items-center my-4">
+    <div class="col-auto">
+        <form action="{% url 'calculator:pet_delete' pet.id %}" method="post">
+          {% csrf_token %}
+        <input type="submit" value="Delete">
       </form>
     </div>
   </div>

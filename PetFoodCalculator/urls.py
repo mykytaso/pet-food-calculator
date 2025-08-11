@@ -4,6 +4,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("accounts/", include("users.urls", namespace="users")),
+    path("account/", include("users.urls", namespace="users")),
     path("", include("calculator.urls", namespace="calculator")),
 ] + debug_toolbar_urls()

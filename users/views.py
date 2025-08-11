@@ -54,7 +54,7 @@ class UserLoginView(LoginView):
 
 
 class UserLogoutView(View):
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         logout(request)
         messages.success(request, "You have been logged out.")
         return redirect("users:login")

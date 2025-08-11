@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import UpdateView, DetailView, CreateView
+from django.views.generic import UpdateView, DetailView, CreateView, DeleteView
 
 from calculator.models import Pet, Food
 
@@ -11,19 +11,16 @@ from calculator.models import Pet, Food
 class IndexView(View):
     def get(self, request, *args, **kwargs):
         current_user = request.user
-        pet = Pet.objects.filter(owner=current_user.id, is_default=True).first()
 
-        if not pet:
-            pet = Pet.objects.filter(owner=current_user.id).first()
+        if not current_user.is_authenticated:
+            return render(request, "calculator/home_guest.html")
 
-        return render(
-            request,
-            "calculator/index.html",
-            {
-                "current_user": current_user,
-                "pet": pet,
-            },
-        )
+        pets = Pet.objects.filter(owner=current_user)
+        pet = pets.filter(is_default=True).first() or pets.order_by("created_at").first()
+        if pet:
+            return redirect("calculator:pet_detail", pk=pet.id)
+
+        return render(request, "calculator/home.html")
 
 
 class PetCreateView(LoginRequiredMixin, View):
@@ -48,6 +45,7 @@ class PetDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
         return Pet.objects.filter(owner=self.request.user)
 
+
 class PetUpdateView(LoginRequiredMixin, UpdateView):
     model = Pet
     fields = ["name", "is_default"]
@@ -56,12 +54,19 @@ class PetUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         is_default = form.cleaned_data.get("is_default")
         if is_default:
-            Pet.objects.filter(owner=self.request.user, is_default=True).update(is_default=False)
+            Pet.objects.filter(owner=self.request.user, is_default=True).update(
+                is_default=False
+            )
         messages.success(self.request, "Pet updated successfully!")
         return super().form_valid(form)
 
     def get_success_url(self):
         return reverse("calculator:pet_detail", kwargs={"pk": self.object.id})
+
+
+class PetDeleteView(LoginRequiredMixin, DeleteView):
+    model = Pet
+    success_url = reverse_lazy("calculator:index")
 
 
 class FoodCreateView(LoginRequiredMixin, View):
@@ -83,7 +88,7 @@ class FoodCreateView(LoginRequiredMixin, View):
             meals=meals,
             meal_size=meal_size,
             package_size=package_size,
-            package_price=package_price
+            package_price=package_price,
         )
 
         return redirect("calculator:pet_detail", pk=pet.id)
@@ -98,19 +103,21 @@ class FoodUpdateView(LoginRequiredMixin, View):
         food.kcal = int(request.POST.get("kcal") or food.kcal or 0)
         food.meals = int(request.POST.get("meals") or food.meals or 0)
         food.meal_size = int(request.POST.get("meal_size") or food.meal_size or 0)
-        food.package_size = int(request.POST.get("package_size") or food.package_size or 0)
-        food.package_price = float(request.POST.get("package_price") or food.package_price or 0)
+        food.package_size = int(
+            request.POST.get("package_size") or food.package_size or 0
+        )
+        food.package_price = float(
+            request.POST.get("package_price") or food.package_price or 0
+        )
         food.save()
 
         # htmx request → re-render single card
         if request.headers.get("Hx-Request") == "true":
-            return render(request, "includes/food_card.html", {
-                "food": food,
-                "pet": food.pet
-            })
+            return render(
+                request, "includes/food_card.html", {"food": food, "pet": food.pet}
+            )
 
         return redirect("calculator:pet_detail", pk=food.pet.id)
-
 
 
 class FoodDeleteView(LoginRequiredMixin, View):

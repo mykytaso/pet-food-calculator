@@ -9,6 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
 
+        {% if not user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link text-white" href={% url "users:login" %}>Login</a>
         </li>
@@ -16,9 +17,15 @@
         <li class="nav-item">
           <a class="nav-link text-white" href={% url "users:register" %}>Register</a>
         </li>
+        {% endif %}
 
+        {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link text-white" href={% url "users:user-detail" %}>Profile</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-white" href={% url "users:logout" %}>Logout</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -44,6 +51,7 @@
             </div>
           </div>
         </li>
+        {% endif %}
 
       </ul>
     </div>

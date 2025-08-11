@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center my-4">
+    <div class="col-auto text-center font-default">
+    <h1>Please add you pet</h1>
+    <p>To use the calculator, you need to add your pet first.</p>
+
+    {% include "includes/add_pet_button.html" %}
+    {% include "includes/add_pet_modal.html" %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}
