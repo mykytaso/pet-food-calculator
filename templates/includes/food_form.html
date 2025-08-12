@@ -24,7 +24,7 @@
   <form hx-post="{% url 'calculator:food_update' food.id %}"
         hx-target="#food-card-{{ food.id }}"
         hx-swap="outerHTML"
-        hx-trigger="click from:#update-all"
+        hx-trigger="click from:#calculate"
   >
     {% csrf_token %}
     <input type="hidden" name="pet_id" value="{{ pet.id }}" />
