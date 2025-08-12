@@ -3,6 +3,44 @@
 
 {% block content %}
 <div class="container-fluid">
-  {% include "includes/calculator.html" %}
+
+  <!-- Title and Edit Button -->
+  <div class="row justify-content-center align-items-center">
+    <div class="col-auto">
+      <h1>{{ pet.name }} </h1>
+    </div>
+    <div class="col-auto">
+      <a href="{% url 'calculator:pet_update' pk=pet.id %}" style="font-size: 30px; color: var(--primary-color);">
+        <i class="bi bi-pencil-square"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Add Food -->
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <form hx-post="{% url 'calculator:food_create' %}"
+            hx-target="#food-list"
+            hx-swap="beforeend">
+        {% csrf_token %}
+        <input type="hidden" name="pet_id" value="{{ pet.id }}">
+        <button class="btn btn-primary" type="submit">Add food</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Food List -->
+  <div class="row justify-content-center font-default" id="food-list">
+    {% for food in pet.foods.all %}
+      {% include "includes/food_form.html" %}
+    {% endfor %}
+  </div>
+
+  <div class="row justify-content-center font-default">
+    <div class="col-auto">
+       <button class="btn btn-primary" type="button" id="update-all">Update All</button>
+    </div>
+  </div>
+
 </div>
 {% endblock %}

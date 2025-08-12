@@ -24,27 +24,39 @@ class Pet(models.Model):
 
 class Food(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
-    kcal = models.PositiveIntegerField(default=0)
-    meals = models.PositiveIntegerField(default=0)
-    meal_size = models.PositiveIntegerField(default=0)
+    kcal = models.PositiveIntegerField(blank=True, null=True)
+    meals = models.PositiveIntegerField(blank=True, null=True)
+    meal_size = models.PositiveIntegerField(blank=True, null=True)
 
-    package_size = models.PositiveIntegerField(default=0)
-    package_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    package_size = models.PositiveIntegerField(blank=True, null=True)
+    package_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
 
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE, related_name="foods")
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ["id"]
+
     @property
     def kcal_per_day(self):
+        if None in (self.kcal, self.meals, self.meal_size):
+            return 0.00
+        if 0 in (self.kcal, self.meals, self.meal_size):
+            return 0.00
+
         return round((self.kcal / 1000) * self.meal_size * self.meals, 2)
+
 
     @property
     def cost_per_day(self):
-        if self.package_size > 0 and self.package_price > 0:
-            return round(
-                (self.package_price / self.package_size) * self.meal_size * self.meals,
-                2,
-            )
-        return 0.00
+        if None in (self.kcal, self.meals, self.meal_size, self.package_size, self.package_price):
+            return 0.00
+        if 0 in (self.kcal, self.meals, self.meal_size, self.package_size, self.package_price):
+            return 0.00
+
+        return round(
+            (self.package_price / self.package_size) * self.meal_size * self.meals,
+            2,
+        )

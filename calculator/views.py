@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import View
@@ -16,7 +17,9 @@ class IndexView(View):
             return render(request, "calculator/home_guest.html")
 
         pets = Pet.objects.filter(owner=current_user)
-        pet = pets.filter(is_default=True).first() or pets.order_by("created_at").first()
+        pet = (
+            pets.filter(is_default=True).first() or pets.order_by("created_at").first()
+        )
         if pet:
             return redirect("calculator:pet_detail", pk=pet.id)
 
@@ -40,7 +43,6 @@ class PetCreateView(LoginRequiredMixin, View):
 class PetDetailView(LoginRequiredMixin, DetailView):
     model = Pet
     template_name = "calculator/pet_detail.html"
-    context_object_name = "pet"
 
     def get_queryset(self):
         return Pet.objects.filter(owner=self.request.user)
@@ -54,10 +56,7 @@ class PetUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         is_default = form.cleaned_data.get("is_default")
         if is_default:
-            Pet.objects.filter(owner=self.request.user, is_default=True).update(
-                is_default=False
-            )
-        messages.success(self.request, "Pet updated successfully!")
+            Pet.objects.filter(owner=self.request.user, is_default=True).update(is_default=False)
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -73,59 +72,43 @@ class FoodCreateView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         pet_id = request.POST.get("pet_id")
         pet = get_object_or_404(Pet, pk=pet_id)
-
-        food_name = request.POST.get("food_name", "name")
-        kcal = request.POST.get("kcal", 0)
-        meals = request.POST.get("meals", 0)
-        meal_size = request.POST.get("meal_size", 0)
-
-        package_size = request.POST.get("package_size", 0)
-        package_price = request.POST.get("package_price", 0.00)
-
-        pet.foods.create(
-            name=food_name,
-            kcal=kcal,
-            meals=meals,
-            meal_size=meal_size,
-            package_size=package_size,
-            package_price=package_price,
-        )
-
-        return redirect("calculator:pet_detail", pk=pet.id)
+        new_food = Food.objects.create(pet=pet,)
+        return render(request, "includes/food_form.html", {"food": new_food, "pet": pet})
 
 
 class FoodUpdateView(LoginRequiredMixin, View):
+    @staticmethod
+    def to_int_or_none(n) -> int | None:
+        try:
+            return int(n)
+        except (ValueError, TypeError):
+            return None
+
+    @staticmethod
+    def to_float_or_none(n) -> float | None:
+        try:
+            return float(n)
+        except (ValueError, TypeError):
+            return None
+
     def post(self, request, food_id, *args, **kwargs):
         food = get_object_or_404(Food, pk=food_id)
 
-        # Update fields
-        food.name = request.POST.get("food_name", food.name)
-        food.kcal = int(request.POST.get("kcal") or food.kcal or 0)
-        food.meals = int(request.POST.get("meals") or food.meals or 0)
-        food.meal_size = int(request.POST.get("meal_size") or food.meal_size or 0)
-        food.package_size = int(
-            request.POST.get("package_size") or food.package_size or 0
-        )
-        food.package_price = float(
-            request.POST.get("package_price") or food.package_price or 0
-        )
+        food.name = request.POST.get("name") or None
+        food.kcal = self.to_int_or_none(request.POST.get("kcal"))
+        food.meals = self.to_int_or_none(request.POST.get("meals"))
+        food.meal_size = self.to_int_or_none(request.POST.get("meal_size"))
+        food.package_size = self.to_int_or_none(request.POST.get("package_size"))
+        food.package_price = self.to_float_or_none(request.POST.get("package_price"))
+
         food.save()
-
-        # htmx request → re-render single card
-        if request.headers.get("Hx-Request") == "true":
-            return render(
-                request, "includes/food_card.html", {"food": food, "pet": food.pet}
-            )
-
-        return redirect("calculator:pet_detail", pk=food.pet.id)
+        food.refresh_from_db()
+        return render(request, "includes/food_form.html", {"food": food, "pet": food.pet})
 
 
 class FoodDeleteView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        pet_id = request.POST.get("pet_id")
-        food_id = request.POST.get("food_id")
-
+        food_id = kwargs.get("pk")
         food = get_object_or_404(Food, pk=food_id)
         food.delete()
-
-        return redirect("calculator:pet_detail", pk=pet_id)
+        return HttpResponse("")
