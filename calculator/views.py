@@ -1,10 +1,9 @@
-from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import UpdateView, DetailView, CreateView, DeleteView
+from django.views.generic import UpdateView, DetailView, DeleteView
 
 from calculator.models import Pet, Food
 

@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.db import models
 
 from users.models import User
@@ -42,9 +44,9 @@ class Food(models.Model):
     @property
     def kcal_per_day(self):
         if None in (self.kcal, self.meals, self.meal_size):
-            return 0.00
+            return 0
         if 0 in (self.kcal, self.meals, self.meal_size):
-            return 0.00
+            return 0
 
         return round((self.kcal / 1000) * self.meal_size * self.meals, 2)
 
@@ -52,9 +54,9 @@ class Food(models.Model):
     @property
     def cost_per_day(self):
         if None in (self.kcal, self.meals, self.meal_size, self.package_size, self.package_price):
-            return 0.00
+            return Decimal(0.00)
         if 0 in (self.kcal, self.meals, self.meal_size, self.package_size, self.package_price):
-            return 0.00
+            return Decimal(0.00)
 
         return round(
             (self.package_price / self.package_size) * self.meal_size * self.meals,

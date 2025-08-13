@@ -43,5 +43,44 @@
     </div>
   </div>
 
+  <!-- Result Section -->
+  <div class="row justify-content-center font-default">
+    <div class="col-auto">
+      <h2>Result</h2>
+      Total kcal: <span id="total-kcal">0</span>
+      <br>
+      Total cost: <span id="total-cost">0.00</span>
+    </div>
+  </div>
+
+  <script>
+    function calculateTotals() {
+      let totalKcal = 0;
+      let totalCost = 0;
+
+      document.querySelectorAll('.kcal-output').forEach(el => {
+        const val = parseFloat(el.textContent);
+        if (!isNaN(val)) totalKcal += val;
+      });
+
+      document.querySelectorAll('.cost-output').forEach(el => {
+        const val = parseFloat(el.textContent);
+        if (!isNaN(val)) totalCost += val;
+      });
+
+      document.getElementById('total-kcal').textContent = totalKcal.toFixed(2);
+      document.getElementById('total-cost').textContent = totalCost.toFixed(2);
+    }
+
+    // Run on page load
+    document.addEventListener('DOMContentLoaded', calculateTotals);
+
+    // Run after any HTMX swap (so totals update dynamically)
+    document.body.addEventListener('htmx:afterSwap', (evt) => {
+      // You can check evt.detail.target if needed
+      calculateTotals();
+    });
+  </script>
+
 </div>
 {% endblock %}
