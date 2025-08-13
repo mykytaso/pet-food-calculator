@@ -29,6 +29,18 @@
     </div>
   </div>
 
+  <!-- Calculate Price Button -->
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <form action="{% url 'calculator:calculate_price' pk=pet.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="calculate_price" value="{{ pet.calculate_price }}">
+        <button class="btn btn-primary" type="submit">Calculate price: {{ pet.calculate_price }} </button>
+      </form>
+    </div>
+  </div>
+
+
   <!-- Food List -->
   <div class="row justify-content-center font-default" id="food-list">
     {% for food in pet.foods.all %}
@@ -36,20 +48,28 @@
     {% endfor %}
   </div>
 
-  <!-- Calculate Button -->
-  <div class="row justify-content-center font-default">
-    <div class="col-auto">
-       <button class="btn btn-primary" type="button" id="calculate">Calculate</button>
-    </div>
-  </div>
-
   <!-- Result Section -->
-  <div class="row justify-content-center font-default">
-    <div class="col-auto">
-      <h2>Result</h2>
-      Total kcal: <span id="total-kcal">0</span>
-      <br>
-      Total cost: <span id="total-cost">0.00</span>
+  <div class="row justify-content-center font-default mb-5 mt-3">
+    <div class="col-auto bg-white rounded-5 box-shadow p-4">
+
+      <table style="font-weight: 700; margin-bottom: 20px;">
+        <tr>
+          <td style="padding: 6px 0">Total day energy:</td>
+          <td style="padding: 6px 0"><span id="total-kcal" style="padding-left: 10px">0</span></td>
+        </tr>
+        <tr {% if pet.calculate_price == 'off' %} hidden {% endif %}>
+          <td>Total day cost:</td>
+          <td><span id="total-cost" style="padding-left: 10px">0.00</span></td>
+        </tr>
+      </table>
+
+      <!-- Calculate Button -->
+      <div class="row justify-content-center font-default">
+        <div class="col-auto">
+           <button class="btn btn-primary" type="button" id="calculate">Calculate</button>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -58,25 +78,25 @@
       let totalKcal = 0;
       let totalCost = 0;
 
-      document.querySelectorAll('.kcal-output').forEach(el => {
+      document.querySelectorAll('.kcal-per-day').forEach(el => {
         const val = parseFloat(el.textContent);
         if (!isNaN(val)) totalKcal += val;
       });
 
-      document.querySelectorAll('.cost-output').forEach(el => {
+      document.querySelectorAll('.cost-per-day').forEach(el => {
         const val = parseFloat(el.textContent);
         if (!isNaN(val)) totalCost += val;
       });
 
-      document.getElementById('total-kcal').textContent = totalKcal.toFixed(2);
-      document.getElementById('total-cost').textContent = totalCost.toFixed(2);
+      document.getElementById('total-kcal').textContent = totalKcal.toFixed(2) + ' kcal';
+      document.getElementById('total-cost').textContent = totalCost.toFixed(2) + ' {{ user.currency }}';
     }
 
     // Run on page load
     document.addEventListener('DOMContentLoaded', calculateTotals);
 
     // Run after any HTMX swap (so totals update dynamically)
-    document.body.addEventListener('htmx:afterSwap', (evt) => {
+    document.body.addEventListener('htmx:afterRequest', (evt) => {
       // You can check evt.detail.target if needed
       calculateTotals();
     });

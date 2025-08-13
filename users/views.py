@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.contrib.auth import login, get_user_model, logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -47,14 +46,9 @@ class UserPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
 
 class UserLoginView(LoginView):
     template_name = "users/login.html"
-    success_url = reverse_lazy("users:user-detail")
-
-    def get_success_url(self):
-        return self.success_url or super().get_success_url()
 
 
 class UserLogoutView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
-        messages.success(request, "You have been logged out.")
-        return redirect("users:login")
+        return redirect("calculator:home")

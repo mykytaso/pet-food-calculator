@@ -3,13 +3,15 @@
 
 {% block content %}
 <div class="container-fluid">
-  <div class="row justify-content-center align-items-center my-4">
-    <div class="col-auto text-center font-default">
-    <h1>Please add you pet</h1>
-    <p>To use the calculator, you need to add your pet first.</p>
+  <div class="row justify-content-center align-items-center">
+    <div class="col-auto text-center box">
 
-    {% include "includes/add_pet_button.html" %}
-    {% include "includes/add_pet_modal.html" %}
+      <div style="font-weight: 600; font-size: 16px; margin-bottom: 12px;">
+        Add your pet to get started
+      </div>
+
+      {% include "includes/add_pet_button.html" %}
+      {% include "includes/add_pet_modal.html" %}
 
     </div>
   </div>

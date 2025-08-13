@@ -1,8 +1,8 @@
 {% load static %}
 
-<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #5e80fd;">
+<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: var(--primary-color);">
   <div class="container-fluid">
-    <a class="navbar-brand" style="color: #ffffff; font-size: 30px; font-weight: 900;" href={% url "calculator:index" %}><i class="bi bi-twitter"></i> Pet Food Calculator</a>
+    <a class="navbar-brand" style="color: #ffffff; font-size: 30px; font-weight: 900;" href={% url "calculator:home" %}><i class="bi bi-twitter"></i> Pet Food Calculator</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,10 +22,6 @@
         {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link text-white" href={% url "users:user-detail" %}>Profile</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link text-white" href={% url "users:logout" %}>Logout</a>
         </li>
 
         <li class="nav-item dropdown">

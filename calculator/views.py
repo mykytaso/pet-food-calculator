@@ -8,7 +8,7 @@ from django.views.generic import UpdateView, DetailView, DeleteView
 from calculator.models import Pet, Food
 
 
-class IndexView(View):
+class HomeView(View):
     def get(self, request, *args, **kwargs):
         current_user = request.user
 
@@ -62,9 +62,23 @@ class PetUpdateView(LoginRequiredMixin, UpdateView):
         return reverse("calculator:pet_detail", kwargs={"pk": self.object.id})
 
 
+class PetCalculatePrice(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        pet_id = kwargs.get("pk")
+        pet = get_object_or_404(Pet, pk=pet_id, owner=request.user)
+
+        if request.POST.get("calculate_price") == "off":
+            pet.calculate_price = "on"
+        else:
+            pet.calculate_price = "off"
+        pet.save()
+
+        return redirect("calculator:pet_detail", pk=pet.id)
+
+
 class PetDeleteView(LoginRequiredMixin, DeleteView):
     model = Pet
-    success_url = reverse_lazy("calculator:index")
+    success_url = reverse_lazy("calculator:home")
 
 
 class FoodCreateView(LoginRequiredMixin, View):
@@ -90,7 +104,8 @@ class FoodUpdateView(LoginRequiredMixin, View):
         except (ValueError, TypeError):
             return None
 
-    def post(self, request, food_id, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
+        food_id = kwargs.get("pk")
         food = get_object_or_404(Food, pk=food_id)
 
         food.name = request.POST.get("name") or None

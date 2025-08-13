@@ -2,32 +2,47 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container-fluid">
 
-  <div class="row mt-md-5 mt-1 justify-content-center">
-    <div class="col-auto fs-2 fw-bolder">
-      User Info
-    </div>
-  </div>
+  <div class="row justify-content-center">
+    <div class="col-auto box">
 
-  <div class="row mt-md-3 mb-md-4 mt-2 mb-3 justify-content-center">
-    <div id="post-field" class="col-11 col-md-8 col-lg-6 p-4 p-lg-5 border">
-
-
-      <div class="row">
-        <div class="col-auto">
-          <b>Email:</b> {{ user.email }}
-        </div>
+      <div style="font-size: 30px; font-weight: 800; margin-bottom: 20px;">
+        Profile
       </div>
 
-{#        <div class="row justify-content-end">#}
-{#          <div class="col-auto">#}
-{#            <a href="{% url 'users:password-change' %}">Change Password</a>#}
-{#          </div>#}
-{#          <div class="col-auto">#}
-{#            <a href="{% url 'users:user-update' %}">Edit Info</a>#}
-{#          </div>#}
-{#        </div>#}
+
+      <div style="margin: 6px 0;">
+        <span style="font-weight: 800">Email:</span> {{ user.email }}
+      </div>
+      <div style="margin: 6px 0 40px 0; ">
+        <span style="font-weight: 800">Currency:</span>  {{ user.currency }}
+      </div>
+
+      <div style="margin: 10px 0;">
+        <a class="btn btn-primary" href={% url "users:user-update" %}>Edit Account</a>
+      </div>
+
+      <div style="margin: 10px 0;">
+        <a class="btn btn-primary" href={% url "users:password-change" %}>Change Password</a>
+      </div>
+
+      <div style="margin: 10px 0;">
+        <a class="btn btn-primary" href={% url "users:logout" %}>Logout</a>
+      </div>
+
+      <form method="post" action="{% url 'users:logout' %}" style="margin: 40px 0 0 0;">
+        {% csrf_token %}
+         <button type="submit" class="btn btn-primary" style="background: #000000">Delete Account</button>
+      </form>
+
+
+
+
+
+
+
+
 
     </div>
   </div>
@@ -36,18 +51,7 @@
 
 
 
-  <div>
-    <a class="font-default" href={% url "users:password-change" %}>Change Password</a>
-  </div>
 
-  <div>
-    <a class="font-default" href={% url "users:user-update" %}>Edit User</a>
-  </div>
-
-  <form method="post" action="{% url 'users:logout' %}">
-    {% csrf_token %}
-     <button type="submit" class="btn btn-outline-primary">Logout</button>
-  </form>
   </div>
 
 {% endblock %}
