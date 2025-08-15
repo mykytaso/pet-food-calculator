@@ -8,11 +8,11 @@
   display: none !important;
 }
 
-input::placeholder {
+.input::placeholder {
   color: var(--light-color) !important;
 }
 
-input {
+.input {
   text-align: center !important;
   color: var(--primary-color) !important;
 }
@@ -85,8 +85,21 @@ body {
 }
 
 .auth-form-field {
+  appearance: none;         /* removes browser styling */
+  -webkit-appearance: none; /* Safari/Chrome */
+  -moz-appearance: none;    /* Firefox */
+
+  border: 2px solid var(--primary-color);
   border-radius: 20px;
-  border-color: var(--primary-color);
+  background-color: white;  /* or your bg */
+  outline: none;
+  box-shadow: none;
+}
+
+.auth-form-field:focus {
+  border-color: var(--primary-color); /* same color */
+  outline: none;
+  box-shadow: none;
 }
 
 .box {

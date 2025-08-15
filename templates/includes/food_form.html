@@ -34,7 +34,7 @@
       <label class="food-form-label">Food name</label>
       <input name="name"
              autocomplete="off"
-             class="form-control form-control-sm food-form-field"
+             class="form-control form-control-sm food-form-field input"
              placeholder="name"
              value="{% if food.name %}{{ food.name }}{% endif %}"
              aria-label="Food name"
@@ -45,7 +45,7 @@
       <label class="food-form-label">Food kcal/kg</label>
       <input name="kcal"
              autocomplete="off"
-             class="form-control form-control-sm food-form-field"
+             class="form-control form-control-sm food-form-field input"
              placeholder="kcal/kg"
              value="{% if food.kcal %}{{ food.kcal }}{% endif %}"
              aria-label="Kcal per kg" />
@@ -55,7 +55,7 @@
       <label class="food-form-label">Meals per day</label>
       <input name="meals"
              autocomplete="off"
-             class="form-control form-control-sm food-form-field"
+             class="form-control form-control-sm food-form-field input"
              placeholder="meals"
              value="{% if food.meals %}{{ food.meals }}{% endif %}"
              aria-label="Meals per day" />
@@ -65,7 +65,7 @@
       <label class="food-form-label">Meal size</label>
       <input name="meal_size"
              autocomplete="off"
-             class="form-control form-control-sm food-form-field"
+             class="form-control form-control-sm food-form-field input"
              placeholder="grams"
              value="{% if food.meal_size %}{{ food.meal_size }}{% endif %}"
              aria-label="Meal size" />
@@ -76,7 +76,7 @@
         <label class="food-form-label">Package size</label>
         <input name="package_size"
                autocomplete="off"
-               class="form-control form-control-sm food-form-field"
+               class="form-control form-control-sm food-form-field input"
                placeholder="grams"
                value="{% if food.package_size %}{{ food.package_size }}{% endif %}"
                aria-label="Package size" />
@@ -86,7 +86,7 @@
         <label class="food-form-label">Package price</label>
         <input name="package_price"
                autocomplete="off"
-               class="form-control form-control-sm food-form-field"
+               class="form-control form-control-sm food-form-field input"
                placeholder="{{ user.currency }}" value="{% if food.package_price %}{{ food.package_price }}{% endif %}"
                aria-label="Package price" />
       </div>

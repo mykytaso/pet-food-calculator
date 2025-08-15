@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block body %}
 
 <div class="container-fluid">
 
@@ -20,18 +20,18 @@
       </div>
 
       <div style="margin: 10px 0;">
-        <a class="btn btn-primary" href={% url "users:user-update" %}>Edit Account</a>
+        <a class="btn btn-primary" href="{% url 'users:user-update' %}">Edit Account</a>
       </div>
 
       <div style="margin: 10px 0;">
-        <a class="btn btn-primary" href={% url "users:password-change" %}>Change Password</a>
+        <a class="btn btn-primary" href="{% url 'account_change_password' %}">Change Password</a>
       </div>
 
       <div style="margin: 10px 0;">
-        <a class="btn btn-primary" href={% url "users:logout" %}>Logout</a>
+        <a class="btn btn-primary" href="{% url 'account_logout' %}">Logout</a>
       </div>
 
-      <form method="post" action="{% url 'users:logout' %}" style="margin: 40px 0 0 0;">
+      <form method="post" action="{% url 'account_logout' %}" style="margin: 40px 0 0 0;">
         {% csrf_token %}
          <button type="submit" class="btn btn-primary" style="background: #000000">Delete Account</button>
       </form>

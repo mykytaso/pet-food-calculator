@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load i18n allauth %}
+{% block body %}
+
+<div class="row justify-content-center my-5">
+  <div class="col-10 col-sm-8 col-md-6 col-lg-5 col-xl-4 col-xxl-3">
+    {% if messages %}
+      {% for message in messages %}
+        {% element alert level=message.tags %}
+          {% slot message %}
+              {{ message }}
+          {% endslot %}
+        {% endelement %}
+      {% endfor %}
+    {% endif %}
+    <div class="bg-white shadow rounded-4">
+      <div id="content" class="p-5">
+          {% block content %}{% endblock %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

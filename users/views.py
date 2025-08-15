@@ -1,12 +1,22 @@
 from django.contrib.auth import login, get_user_model, logout
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView, LoginView
+from django import forms
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic, View
 
-from users.forms import RegisterForm, UpdateForm
+from users.forms import UpdateForm
+
+
+class RegisterForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = get_user_model()
+        fields = ["email", "weight_unit", "password1", "password2"]
+
 
 
 class UserRegisterView(generic.CreateView):
@@ -19,6 +29,10 @@ class UserRegisterView(generic.CreateView):
         user = form.save()
         login(self.request, user)
         return response
+
+
+
+
 
 
 class UserDetailView(LoginRequiredMixin, generic.TemplateView):

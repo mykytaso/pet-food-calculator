@@ -1,0 +1,42 @@
+{% load allauth %}
+{% load static %}
+
+{#<div class="d-flex justify-content-center">#}
+{#    <a class="d-block w-100 link-dark link-underline link-underline-opacity-0"#}
+{#       style="border-radius: 30px; padding: 10px; text-align: center; border: 1px solid #EAEAEA"#}
+{#       title="{{ attrs.name }}"#}
+{#       href="{{ attrs.href }}"#}
+{#    >#}
+{#      <img src="{% static 'images/google.png' %}" alt="Google logo" style="width: 40px; height: 40px;">#}
+{#      <span style="font-weight: 700; margin-left: 10px; color: #505050;">Continue with {{ attrs.name }}</span>#}
+{#    </a>#}
+{#</div>#}
+
+
+<style>
+.custom-link {
+    border-radius: 30px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #EAEAEA;
+    color: #505050;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.custom-link:hover {
+    border-color: #b1b1b1;       /* border on hover */
+    color: #000000;              /* text color on hover */
+}
+</style>
+
+<div class="d-flex justify-content-center">
+    <a class="custom-link w-100"
+       title="{{ attrs.name }}"
+       href="{{ attrs.href }}"
+    >
+      <img src="{% static 'images/google.png' %}" alt="Google logo" style="width: 30px; height: 30px;">
+      <span style="font-weight: 700; margin-left: 10px;">Continue with {{ attrs.name }}</span>
+    </a>
+</div>

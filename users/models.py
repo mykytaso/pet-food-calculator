@@ -1,9 +1,14 @@
+import uuid
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
 class User(AbstractUser):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+
     UNIT_CHOICES = [("g", "Grams"), ("lb", "Pounds")]
+
     CURRENCY_CHOICES = [
         ("$", "US Dollar"),
         ("€", "Euro"),
@@ -26,13 +31,7 @@ class User(AbstractUser):
         ("BRL", "Brazilian Real"),
     ]
 
-    username = None
-    email = models.EmailField(unique=True)
-
     weight_unit = models.CharField(
         max_length=2, choices=UNIT_CHOICES, default="g"
     )
     currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES, default="$")
-
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
