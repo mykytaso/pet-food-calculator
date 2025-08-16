@@ -1,6 +1,9 @@
 {% load allauth %}
-<div role="alert"
-     class="alert alert-xs {% if attrs.level == "error" %}alert-warning{% else %}alert-info{% endif %}">
-    {% slot message %}
-    {% endslot %}
+
+<div class="row justify-content-center m-4">
+  <div class="col-auto">
+    <div role="alert" class="alert alert-xs {% if attrs.level == "error" %}alert-warning{% else %}alert-info{% endif %}">
+        {% slot message %}{% endslot %}
+    </div>
+  </div>
 </div>

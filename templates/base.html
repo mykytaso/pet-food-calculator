@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n allauth %}
 
 <!doctype html>
 <html lang="en">
@@ -25,6 +26,17 @@
     {% block navbar %}
       {% include "includes/navbar.html" %}
     {% endblock %}
+
+    <!-- Messages -->
+    {% if messages %}
+      {% for message in messages %}
+        {% element alert level=message.tags %}
+          {% slot message %}
+              {{ message }}
+          {% endslot %}
+        {% endelement %}
+      {% endfor %}
+    {% endif %}
 
     {% block body %}
       Test block content

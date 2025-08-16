@@ -86,7 +86,7 @@ class FoodCreateView(LoginRequiredMixin, View):
         pet_id = request.POST.get("pet_id")
         pet = get_object_or_404(Pet, pk=pet_id)
         new_food = Food.objects.create(pet=pet,)
-        return render(request, "includes/food_form.html", {"food": new_food, "pet": pet})
+        return render(request, "components/food_form.html", {"food": new_food, "pet": pet})
 
 
 class FoodUpdateView(LoginRequiredMixin, View):
@@ -117,7 +117,7 @@ class FoodUpdateView(LoginRequiredMixin, View):
 
         food.save()
         food.refresh_from_db()
-        return render(request, "includes/food_form.html", {"food": food, "pet": food.pet})
+        return render(request, "components/food_form.html", {"food": food, "pet": food.pet})
 
 
 class FoodDeleteView(LoginRequiredMixin, View):

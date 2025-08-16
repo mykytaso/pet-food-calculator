@@ -2,19 +2,13 @@
   --primary-color: #5e80fd;
   --secondary-color: #FEC2D9;
   --light-color: #8ea6fe;
+  --dark-color: #22263a;
+  --box-radius: 20px;
+  --food-box-radius: 30px;
 }
 
 .hidden {
   display: none !important;
-}
-
-.input::placeholder {
-  color: var(--light-color) !important;
-}
-
-.input {
-  text-align: center !important;
-  color: var(--primary-color) !important;
 }
 
 body {
@@ -33,30 +27,63 @@ body {
 
 
 .form-check-input:checked {
-  background-color: var(--primary-color);  /* Background track color */
+  background-color: var(--primary-color);
   border-color: var(--primary-color);
 }
 
-.box-shadow {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
 .btn-primary {
-  background: var(--primary-color);
-  color: #ffffff;
-  font-weight: 700;
-  border-radius: 50px;
+  background: var(--primary-color) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border-radius: 50px !important;
   border: none !important;
+    padding: 10px !important;
 }
 
+/* Button Styles */
 .btn-primary:hover {
-  background: var(--primary-color);
-  color: #ffffff;
-  font-weight: 700;
-  border-radius: 50px;
+  background: #5476ef !important;
+  color: #ffffff !important;
+  font-weight: 640 !important;
+  border-radius: 50px !important;
   border: none !important;
 }
 
+.btn-primary:active {
+  background: #364ca3 !important;
+  color: #ffffff !important;
+  font-weight: 640 !important;
+  border-radius: 50px !important;
+  border: none !important;
+}
+
+.btn-dark {
+  background: var(--dark-color) !important;
+  color: #eaeaea !important;
+  font-weight: 600 !important;
+  border-radius: 50px !important;
+  border: none !important;
+    padding: 10px !important;
+}
+
+.btn-dark:hover {
+  background: #000000 !important;
+  color: #ffffff !important;
+  font-weight: 640 !important;
+  border-radius: 50px !important;
+  border: none !important;
+}
+
+.btn-dark:active {
+  background: #000000 !important;
+  color: #aaabb4 !important;
+  font-weight: 640 !important;
+  border-radius: 50px !important;
+  border: none !important;
+}
+
+
+/* Switch Styles */
 .switch,
 .switch:focus,
 .switch:active {
@@ -65,10 +92,32 @@ body {
   border: none !important;
 }
 
+
+/* Dropdown Styles */
 .dropdown-link-custom {
   color: var(--primary-color) !important;
   font-weight: 600 !important;
   text-decoration: none !important;
+}
+
+
+/* Food Form Styles */
+.food-form-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 24px;
+}
+
+.food-box {
+  background-color: #ffffff !important;
+  border: none !important;
+  border-radius: var(--food-box-radius) !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+  padding: 30px !important;
+    margin: 20px;
+  font-family: "Nunito Sans", sans-serif !important;
+  color: var(--primary-color) !important;
 }
 
 .food-form-label {
@@ -80,35 +129,84 @@ body {
 
 .food-form-field {
     width: 80px;
+    border: 1px solid var(--primary-color);
     border-radius: 20px;
-    border-color: var(--primary-color);
+    text-align: center !important;
+    color: var(--primary-color) !important;
 }
 
-.auth-form-field {
-  appearance: none;         /* removes browser styling */
-  -webkit-appearance: none; /* Safari/Chrome */
-  -moz-appearance: none;    /* Firefox */
+.food-form-field::placeholder {
+    color: var(--light-color) !important;
+}
 
+.food-form-row {
+  display: flex;
+  align-items: center;
+  margin: 10px 0 10px 0;
+}
+
+
+/* Auth Form Styles */
+.auth-form-field {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   border: 2px solid var(--primary-color);
-  border-radius: 20px;
-  background-color: white;  /* or your bg */
+  border-radius: var(--box-radius);
+  background-color: white;
   outline: none;
   box-shadow: none;
 }
 
 .auth-form-field:focus {
-  border-color: var(--primary-color); /* same color */
+  border-color: var(--primary-color);
   outline: none;
   box-shadow: none;
 }
 
+
+/* Box Styles */
 .box {
   background-color: #ffffff !important;
   border: none !important;
-  border-radius: 20px !important;
+  border-radius: var(--box-radius) !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
-  padding: 20px !important;
-  margin-top: 40px !important;
+  padding: 48px !important;
+  margin-top: 48px !important;
   font-family: "Nunito Sans", sans-serif !important;
   color: var(--primary-color) !important;
+}
+
+.box-header {
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    color: var(--dark-color) !important;
+}
+
+.box-content {
+    color: var(--dark-color) !important;
+}
+
+.box-shadow {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.shadow {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+}
+
+
+/* Alert Styles */
+.alert-info,
+.alert-warning {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  color: rgba(0, 0, 0, 0.6) !important;
+  border: none !important;
+  border-radius: 30px !important;
+}
+
+
+/* Form Styles */
+.asteriskField {
+    display: none !important;
 }

@@ -46,7 +46,7 @@
   <!-- Food List -->
   <div class="row justify-content-center font-default" id="food-list">
     {% for food in pet.foods.all %}
-      {% include "includes/food_form.html" %}
+      {% include "components/food_form.html" %}
     {% endfor %}
   </div>
 
@@ -54,7 +54,7 @@
   <div class="row justify-content-center font-default mb-5 mt-3">
     <div class="col-auto bg-white rounded-5 box-shadow p-4">
 
-      <table style="font-weight: 700; margin-bottom: 20px;">
+      <table style="font-weight: 700; margin-bottom: 20px; color: var(--dark-color);">
         <tr>
           <td style="padding: 6px 0">Total day energy:</td>
           <td style="padding: 6px 0"><span id="total-kcal" style="padding-left: 10px">0</span></td>
@@ -66,11 +66,7 @@
       </table>
 
       <!-- Calculate Button -->
-      <div class="row justify-content-center font-default">
-        <div class="col-auto">
-           <button class="btn btn-primary" type="button" id="calculate">Calculate</button>
-        </div>
-      </div>
+      <button class="btn btn-primary w-100" type="button" id="calculate">Calculate</button>
 
     </div>
   </div>

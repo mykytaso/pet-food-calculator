@@ -1,22 +1,31 @@
-{% extends "base.html" %}
-{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block body %}
-{#<div class="container-fluid">#}
-{#  <div class="row justify-content-center align-items-center my-4">#}
-{#    <div class="col-auto text-center font-default">#}
-{#      <h1>Home for Guest</h1>#}
-{#      <p>There will be calculator logic but only with JS</p>#}
-{#    </div>#}
-{#  </div>#}
-{#</div>#}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="/static/css/style.css">
+  <title>Pet Food Calculator</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+
+</head>
 
 
-
-
+<body>
   <div class="container-fluid">
 
-
+    <div class="row justify-content-center align-items-center p-3" style="background: #5e80fd">
+      <div class="col-auto" style="color: #ffffff; font-size: 30px; font-weight: 900">
+        Pet Food Calculator
+      </div>
+    </div>
 
     <div class="row justify-content-center align-items-center" style="margin-top: 32px">
       <div class="col-auto">
@@ -42,11 +51,11 @@
     <div class="row justify-content-center align-items-center mt-5" style="color: #5e80fd;">
       <div class="col-auto bg-white rounded-5 p-4 box-shadow">
         Results:
-
+    
         <div>
           <strong>Total kcal: <span id="total-kcal">0</span></strong>
         </div>
-
+    
         <div>
           <strong>Total cost: <span id="total-cost">0</span></strong>
         </div>
@@ -126,9 +135,5 @@
     <script src="/static/js/script.js"></script>
 
   </div>
-
-
-
-
-
-{% endblock %}
+</body>
+</html>

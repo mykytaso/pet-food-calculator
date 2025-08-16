@@ -4,54 +4,40 @@
 
 <div class="container-fluid">
 
-  <div class="row justify-content-center">
+  <div class="row justify-content-center align-items-center">
     <div class="col-auto box">
 
-      <div style="font-size: 30px; font-weight: 800; margin-bottom: 20px;">
+      <div class="box-header">
         Profile
       </div>
 
-
-      <div style="margin: 6px 0;">
-        <span style="font-weight: 800">Email:</span> {{ user.email }}
+      <div class="box-content" style="margin: 10px 0;">
+        <span>Email:</span> {{ user.email }}
       </div>
-      <div style="margin: 6px 0 40px 0; ">
-        <span style="font-weight: 800">Currency:</span>  {{ user.currency }}
-      </div>
-
-      <div style="margin: 10px 0;">
-        <a class="btn btn-primary" href="{% url 'users:user-update' %}">Edit Account</a>
+      <div class="box-content" style="margin: 6px 0;">
+        <span>Currency:</span>  {{ user.currency }}
       </div>
 
-      <div style="margin: 10px 0;">
-        <a class="btn btn-primary" href="{% url 'account_change_password' %}">Change Password</a>
+      <div style="margin: 40px 0 0 0;" class="text-end">
+        <a class="btn btn-primary w-100" href="{% url 'users:user-settings' %}">Settings</a>
       </div>
 
-      <div style="margin: 10px 0;">
-        <a class="btn btn-primary" href="{% url 'account_logout' %}">Logout</a>
+      <div style="margin: 10px 0;" class="text-end">
+        <a class="btn btn-primary w-100" href="{% url 'account_change_password' %}">Change Password</a>
       </div>
 
-      <form method="post" action="{% url 'account_logout' %}" style="margin: 40px 0 0 0;">
+      <div style="margin: 10px 0;" class="text-end">
+        <a class="btn btn-primary w-100" href="{% url 'account_logout' %}">Logout</a>
+      </div>
+
+      <form method="post" action="{% url 'account_logout' %}" style="margin: 40px 0 0 0;" class="text-end">
         {% csrf_token %}
-         <button type="submit" class="btn btn-primary" style="background: #000000">Delete Account</button>
+         <button type="submit" class="btn btn-dark w-100">Delete Account</button>
       </form>
-
-
-
-
-
-
-
-
 
     </div>
   </div>
 
-
-
-
-
-
-  </div>
+</div>
 
 {% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+
+{% block body %}
+
+<div class="container-fluid">
+
+  <div class="row justify-content-center align-items-center">
+    <div class="col-auto box">
+
+      <div class="box-header">
+        Settings
+      </div>
+
+      <form method="post" class="box-content" style="margin-top: 14px;" >
+        {% csrf_token %}
+        {{ form | crispy }}
+
+
+          <button type="submit" class="btn btn-primary w-100" style="margin: 40px 0 0 0;">
+            Save
+          </button>
+      </form>
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}
