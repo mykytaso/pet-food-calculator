@@ -82,6 +82,31 @@ body {
   border: none !important;
 }
 
+.btn-pet-nav {
+  background: #4e64dc !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border-radius: 30px !important;
+  border: none !important;
+  padding: 4px 10px 4px 10px !important;
+}
+
+.btn-pet-nav:hover {
+  background: #4153b7 !important;
+  color: #ffffff !important;
+  font-weight: 640 !important;
+  border-radius: 30px !important;
+  border: none !important;
+}
+
+/*.btn-pet-nav:active {*/
+/*  background: #000000 !important;*/
+/*  color: #aaabb4 !important;*/
+/*  font-weight: 640 !important;*/
+/*  border-radius: 50px !important;*/
+/*  border: none !important;*/
+/*}*/
+
 
 /* Switch Styles */
 .switch,
@@ -209,17 +234,4 @@ body {
 /* Form Styles */
 .asteriskField {
     display: none !important;
-}
-
-
-
-:root { --r: 30px; }
-
-/* main block */
-.curved-with-navbar{
-  position: relative;
-  background: var(--primary-color);
-  border-radius: 0 0 var(--r) var(--r); /* bottom corners */
-  /* optional if navbar should sit on top */
-  z-index: 0;
 }

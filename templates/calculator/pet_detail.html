@@ -5,18 +5,11 @@
 <div class="container-fluid">
 
   <!-- Title and Edit Button -->
-  <div class="row justify-content-center m-0 p-0 flex-nowrap">
-
-    <!-- Left Decorative Column -->
-    <div class="col-auto m-0 p-0" style="width: 30px;  background-color: var(--primary-color)">
-      <div style="width: 30px; height: 100%; background-color: var(--secondary-color); border-radius: 0 20px 0 0"></div>
-    </div>
-
+  <div class="row justify-content-center" style="margin-top:20px">
     <!-- Main Title Section -->
-    <div class="col-auto" style="border-radius: 0 0 30px 30px; background-color: var(--primary-color); padding: 10px;">
+    <div class="col-auto" style="border-radius: 30px; background-color: var(--primary-color); padding: 10px;">
 
-
-      <div class="row justify-content-center align-items-center">
+      <div class="row justify-content-center align-items-center  gap-1">
         <!-- Pet Name -->
         <div class="col-auto">
           <span style="font-size: 20px; font-weight: bold; color: #ffffff;">
@@ -24,9 +17,18 @@
           </span>
         </div>
 
+        <!-- Calculate Price Button -->
+        <div class="col-auto">
+          <form action="{% url 'calculator:calculate_price' pk=pet.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="calculate_price" value="{{ pet.calculate_price }}">
+            <button class="btn btn-pet-nav" type="submit">Cost: {{ pet.calculate_price }} </button>
+          </form>
+        </div>
+
         <!-- Edit Pet -->
         <div class="col-auto">
-          <a href="{% url 'calculator:pet_update' pk=pet.id %}" class="btn btn-primary">
+          <a href="{% url 'calculator:pet_update' pk=pet.id %}" class="btn btn-pet-nav">
             Edit
           </a>
         </div>
@@ -38,28 +40,13 @@
                 hx-swap="beforeend">
             {% csrf_token %}
             <input type="hidden" name="pet_id" value="{{ pet.id }}">
-            <button class="btn btn-primary" type="submit">Add food</button>
+            <button class="btn btn-pet-nav" type="submit">Add food</button>
           </form>
         </div>
 
-        <!-- Calculate Price Button -->
-        <div class="col-auto">
-          <form action="{% url 'calculator:calculate_price' pk=pet.id %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="calculate_price" value="{{ pet.calculate_price }}">
-            <button class="btn btn-primary" type="submit">Calculate price: {{ pet.calculate_price }} </button>
-          </form>
-        </div>
 
       </div>
-
     </div>
-
-    <!-- Right Decorative Column -->
-    <div class="col-auto m-0 p-0" style="width: 30px;  background-color: var(--primary-color)">
-      <div style="width: 30px; height: 100%; background-color: var(--secondary-color); border-radius: 20px 0 0 0"></div>
-    </div>
-
   </div>
 
 
