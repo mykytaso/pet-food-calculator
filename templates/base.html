@@ -22,32 +22,32 @@
   </head>
 
   <body>
+    <div class="container-fluid">
 
-    {% block navbar %}
-      {% include "includes/navbar.html" %}
-    {% endblock %}
+      {% block navbar %}
+        {% include "includes/navbar.html" %}
+      {% endblock %}
 
-    <!-- Messages -->
-    {% if messages %}
-      {% for message in messages %}
-        {% element alert level=message.tags %}
-          {% slot message %}
-              {{ message }}
-          {% endslot %}
-        {% endelement %}
-      {% endfor %}
-    {% endif %}
+      <!-- Messages -->
+      {% if messages %}
+        {% for message in messages %}
+          {% element alert level=message.tags %}
+            {% slot message %}
+                {{ message }}
+            {% endslot %}
+          {% endelement %}
+        {% endfor %}
+      {% endif %}
 
-    {% block body %}
-      Test block content
-    {% endblock %}
+      {% block body %}{% endblock %}
 
-{#    {% block footer %}#}
-{#      {% include "includes/footer.html" %}#}
-{#    {% endblock %}#}
+  {#    {% block footer %}#}
+  {#      {% include "includes/footer.html" %}#}
+  {#    {% endblock %}#}
 
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+      <!-- Bootstrap -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    </div>
   </body>
 
 </html>
