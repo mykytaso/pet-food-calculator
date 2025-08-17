@@ -210,3 +210,16 @@ body {
 .asteriskField {
     display: none !important;
 }
+
+
+
+:root { --r: 30px; }
+
+/* main block */
+.curved-with-navbar{
+  position: relative;
+  background: var(--primary-color);
+  border-radius: 0 0 var(--r) var(--r); /* bottom corners */
+  /* optional if navbar should sit on top */
+  z-index: 0;
+}
