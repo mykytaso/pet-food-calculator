@@ -1,25 +1,47 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
 
 {% block body %}
 <div class="container-fluid">
 
-  <div class="row justify-content-center align-items-center my-4">
-    <div class="col-auto">
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Update">
-      </form>
-    </div>
-  </div>
+  <div class="row justify-content-center align-items-center">
+    <div class="col-auto box">
 
-  <div class="row justify-content-center align-items-center my-4">
-    <div class="col-auto">
-        <form action="{% url 'calculator:pet_delete' pet.id %}" method="post">
-          {% csrf_token %}
-        <input type="submit" value="Delete">
+      <div class="box-header">
+        Pet Profile
+      </div>
+
+      <form method="post" class="box-content box-content-margin-top">
+        {% csrf_token %}
+        {{ form | crispy }}
+
+        <input type="submit"
+               value="Update"
+               class="btn btn-primary w-100 box-btn-under-form-margin-top"
+        >
       </form>
+
+
+      <div>
+        <a href="{% url 'calculator:pet_detail' pet.pk %}"
+           class="btn btn-cancel w-100"
+           style="margin-top: 10px;"
+        >
+          Cancel
+        </a>
+      </div>
+
+      <form action="{% url 'calculator:pet_delete' pet.id %}" class="m-0 p-0">
+        <input type="submit"
+               value="Delete"
+               class="btn btn-dark w-100"
+               style="margin-top: 46px;"
+        >
+      </form>
+
     </div>
   </div>
 

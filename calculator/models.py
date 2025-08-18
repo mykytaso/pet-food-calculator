@@ -11,7 +11,7 @@ class Pet(models.Model):
         ("off", "Off"),
     ]
 
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=30)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pets")
     is_default = models.BooleanField(default=False)
     calculate_price = models.CharField(max_length=3, choices=CALCULATE_PRICE_CHOICES, default="off")

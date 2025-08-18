@@ -8,29 +8,32 @@
     <div class="col-auto box">
 
       <div class="box-header">
-        Profile
+        User Profile
       </div>
 
-      <div class="box-content" style="margin: 10px 0;">
+      <div class="box-content box-content-margin-top">
         <span>Email:</span> {{ user.email }}
       </div>
       <div class="box-content" style="margin: 6px 0;">
         <span>Currency:</span>  {{ user.currency }}
       </div>
 
-      <div style="margin: 40px 0 0 0;" class="text-end">
+      <div class="box-btn-margin-top">
         <a class="btn btn-primary w-100" href="{% url 'users:user-settings' %}">Settings</a>
       </div>
 
-      <div style="margin: 10px 0;" class="text-end">
+      <div style="margin: 20px 0;">
         <a class="btn btn-primary w-100" href="{% url 'account_change_password' %}">Change Password</a>
       </div>
 
-      <div style="margin: 10px 0;" class="text-end">
-        <a class="btn btn-primary w-100" href="{% url 'account_logout' %}">Logout</a>
+      <div style="margin: 20px 0;">
+        <a class="btn btn-cancel w-100" href="{% url 'account_logout' %}">Logout</a>
       </div>
 
-      <form method="post" action="{% url 'account_logout' %}" style="margin: 40px 0 0 0;" class="text-end">
+      <form method="post"
+            action="{% url 'account_logout' %}"
+            style="margin-top: 46px;"
+      >
         {% csrf_token %}
          <button type="submit" class="btn btn-dark w-100">Delete Account</button>
       </form>

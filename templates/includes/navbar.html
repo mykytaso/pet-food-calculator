@@ -24,27 +24,40 @@
           <a class="nav-link text-white" href={% url "users:user-detail" %}>Profile</a>
         </li>
 
+        <!-- Pets Dropdown Menu -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+          <a class="nav-link dropdown-toggle"
+             href="#"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false"
+          >
             Your Pets
           </a>
-          <div class="dropdown-menu rounded-4">
+
+          <div class="dropdown-menu shadow" style="padding: 20px; border-radius: 20px; border: none;">
             {% for pet in user.pets.all %}
-              <div style="margin-bottom: 10px; margin-left: 20px">
-                <a class="dropdown-link-custom" href={% url "calculator:pet_detail" pk=pet.id %}>
+              <div>
+                <a class="dropdown-link-custom d-block"
+                   href="{% url 'calculator:pet_detail' pk=pet.id %}"
+
+                >
                   {{ pet.name }}
+                  {% if pet.is_default %}
+                    <span style="font-weight: 400; opacity: 0.5;">
+                      (Default)
+                    </span>
+                  {% endif %}
                 </a>
               </div>
             {% endfor %}
 
-            <hr class="dropdown-divider">
-
-            <div>
-              <!-- Add Pet Button -->
-              <div style="margin-left: 20px">
-                {% include "includes/add_pet_button.html" %}
-              </div>
+            <!-- Add Pet Button -->
+            <div style="margin-top: 20px;">
+              {% include "includes/add_pet_button.html" %}
             </div>
+
           </div>
         </li>
         {% endif %}

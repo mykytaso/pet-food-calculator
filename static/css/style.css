@@ -37,7 +37,7 @@ body {
   font-weight: 600 !important;
   border-radius: 50px !important;
   border: none !important;
-    padding: 10px !important;
+  padding: 10px !important;
 }
 
 /* Button Styles */
@@ -58,8 +58,8 @@ body {
 }
 
 .btn-dark {
-  background: var(--dark-color) !important;
-  color: #eaeaea !important;
+  background: #b43440 !important;
+  color: #ffffff !important;
   font-weight: 600 !important;
   border-radius: 50px !important;
   border: none !important;
@@ -67,7 +67,7 @@ body {
 }
 
 .btn-dark:hover {
-  background: #000000 !important;
+  background: #a9303b !important;
   color: #ffffff !important;
   font-weight: 640 !important;
   border-radius: 50px !important;
@@ -75,28 +75,57 @@ body {
 }
 
 .btn-dark:active {
-  background: #000000 !important;
-  color: #aaabb4 !important;
+  background: #801f27 !important;
+  color: #ffffff !important;
   font-weight: 640 !important;
   border-radius: 50px !important;
   border: none !important;
 }
 
+.btn-cancel {
+  background: #a1a5ba !Important;
+  color: #ffffff !Important;
+  font-weight: 600 !Important;
+  border-radius: 50px !Important;
+  border: none !Important;
+  padding: 10px !Important;
+}
+
+.btn-cancel:active,
+.btn-cancel:hover {
+  background: #8d91a6 !Important;
+  color: #ffffff !Important;
+  font-weight: 640 !Important;
+  border-radius: 50px !Important;
+  border: none !Important;
+  padding: 10px !Important;
+}
+
+.btn-cancel:active {
+  background: #71758a !Important;
+  color: #ffffff !Important;
+  font-weight: 640 !Important;
+  border-radius: 50px !Important;
+  border: none !Important;
+  padding: 10px !Important;
+}
+
 .btn-pet-nav {
-  background: #4e64dc !important;
+  background: var(--primary-color) !important;
   color: #ffffff !important;
   font-weight: 600 !important;
-  border-radius: 30px !important;
+  border-radius: 30px;
   border: none !important;
-  padding: 4px 10px 4px 10px !important;
+  padding: 8px 18px 8px 18px !important;
 }
 
 .btn-pet-nav:hover {
   background: #4153b7 !important;
   color: #ffffff !important;
   font-weight: 640 !important;
-  border-radius: 30px !important;
+  border-radius: 30px;
   border: none !important;
+  /*padding: 4px 10px 4px 10px !important;*/
 }
 
 /*.btn-pet-nav:active {*/
@@ -115,14 +144,6 @@ body {
   box-shadow: none !important;
   outline: none;
   border: none !important;
-}
-
-
-/* Dropdown Styles */
-.dropdown-link-custom {
-  color: var(--primary-color) !important;
-  font-weight: 600 !important;
-  text-decoration: none !important;
 }
 
 
@@ -196,7 +217,7 @@ body {
   border: none !important;
   border-radius: var(--box-radius) !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
-  padding: 48px !important;
+  padding: 38px 48px 38px 48px !important;
   margin-top: 48px !important;
   font-family: "Nunito Sans", sans-serif !important;
   color: var(--primary-color) !important;
@@ -210,6 +231,18 @@ body {
 
 .box-content {
     color: var(--dark-color) !important;
+}
+
+.box-content-margin-top {
+    margin: 10px 0 !important;
+}
+
+.box-btn-margin-top {
+    margin: 40px 0 0 0 !important;
+}
+
+.box-btn-under-form-margin-top {
+    margin: 30px 0 0 0 !important;
 }
 
 .box-shadow {
@@ -234,4 +267,27 @@ body {
 /* Form Styles */
 .asteriskField {
     display: none !important;
+}
+
+
+/* Drop Down Meny in Navbar */
+.dropdown-menu {
+  white-space: nowrap !important;
+}
+
+.dropdown-link-custom {
+  color: var(--dark-color) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  padding: 10px 20px 10px 20px;
+  border-radius: 30px;
+}
+
+.dropdown-link-custom:hover {
+  color: var(--dark-color) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  padding: 10px 20px 10px 20px;
+  border-radius: 30px;
+    background-color: #e7ebfd;
 }

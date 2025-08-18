@@ -7,49 +7,67 @@
   <!-- Title and Edit Button -->
   <div class="row justify-content-center" style="margin-top:20px">
     <!-- Main Title Section -->
-    <div class="col-auto" style="border-radius: 30px; background-color: var(--primary-color); padding: 10px;">
+    <div class="col-auto shadow" style="border-radius: 30px; background-color: #ffffff; padding: 10px;">
 
-      <div class="row justify-content-center align-items-center  gap-1">
+      <div class="row justify-content-center align-items-center">
         <!-- Pet Name -->
         <div class="col-auto">
-          <span style="font-size: 20px; font-weight: bold; color: #ffffff;">
+          <span class="box-header"
+          >
             {{ pet.name }}
           </span>
         </div>
+      </div>
+
+      <div class="row justify-content-center align-items-center"
+           style="margin: 10px 4px 0 4px; padding: 0 0 0 0;"
+      >
 
         <!-- Calculate Price Button -->
-        <div class="col-auto">
-          <form action="{% url 'calculator:calculate_price' pk=pet.id %}" method="post">
+        <div class="col-auto m-0 p-0">
+          <form action="{% url 'calculator:calculate_price' pk=pet.id %}"
+                method="post"
+          >
             {% csrf_token %}
             <input type="hidden" name="calculate_price" value="{{ pet.calculate_price }}">
-            <button class="btn btn-pet-nav" type="submit">Cost: {{ pet.calculate_price }} </button>
+            <button class="btn btn-pet-nav"
+                    type="submit"
+                    style="border-radius: 30px 0 0 30px"
+            >
+              Cost: {{ pet.calculate_price }}
+            </button>
           </form>
         </div>
 
         <!-- Edit Pet -->
-        <div class="col-auto">
-          <a href="{% url 'calculator:pet_update' pk=pet.id %}" class="btn btn-pet-nav">
+        <div class="col-auto m-0 p-0">
+          <a href="{% url 'calculator:pet_update' pk=pet.id %}"
+             class="btn btn-pet-nav"
+             style="border-radius: 0 0 0 0"
+          >
             Edit
           </a>
         </div>
 
         <!-- Add Food -->
-        <div class="col-auto">
+        <div class="col-auto m-0 p-0">
           <form hx-post="{% url 'calculator:food_create' %}"
                 hx-target="#food-list"
                 hx-swap="beforeend">
             {% csrf_token %}
             <input type="hidden" name="pet_id" value="{{ pet.id }}">
-            <button class="btn btn-pet-nav" type="submit">Add food</button>
+            <button class="btn btn-pet-nav"
+                    type="submit"
+                    style="border-radius: 0 30px 30px 0"
+            >
+              + Add food
+            </button>
           </form>
         </div>
-
 
       </div>
     </div>
   </div>
-
-
 
   <!-- Food List -->
   <div class="row justify-content-center font-default" id="food-list">

@@ -14,15 +14,18 @@
         Settings
       </div>
 
-      <form method="post" class="box-content" style="margin-top: 14px;" >
+      <form method="post" class="box-content box-content-margin-top">
         {% csrf_token %}
         {{ form | crispy }}
 
-
-          <button type="submit" class="btn btn-primary w-100" style="margin: 40px 0 0 0;">
-            Save
+          <button type="submit" class="btn btn-primary box-btn-under-form-margin-top w-100">
+            Update
           </button>
       </form>
+
+      <div style="margin-top: 20px;">
+        {% include "includes/user_cancel_btn.html" %}
+      </div>
 
     </div>
   </div>
