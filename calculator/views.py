@@ -49,7 +49,7 @@ class PetDetailView(LoginRequiredMixin, DetailView):
 
 class PetUpdateView(LoginRequiredMixin, UpdateView):
     model = Pet
-    fields = ["name", "is_default"]
+    fields = ["name", "pet_icon", "is_default"]
     template_name = "calculator/pet_update.html"
 
     def form_valid(self, form):
