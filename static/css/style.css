@@ -2,7 +2,7 @@
   --primary-color: #5e80fd;
   --secondary-color: #FEC2D9;
   --light-color: #8ea6fe;
-  --dark-color: #22263a;
+  --dark-color: #312e4e;
   --box-radius: 20px;
   --food-box-radius: 30px;
 }
@@ -58,7 +58,7 @@ body {
 }
 
 .btn-dark {
-  background: #b43440 !important;
+  background: var(--dark-color) !important;
   color: #ffffff !important;
   font-weight: 600 !important;
   border-radius: 50px !important;
@@ -67,7 +67,7 @@ body {
 }
 
 .btn-dark:hover {
-  background: #a9303b !important;
+  background: #25233d !important;
   color: #ffffff !important;
   font-weight: 640 !important;
   border-radius: 50px !important;
@@ -75,7 +75,7 @@ body {
 }
 
 .btn-dark:active {
-  background: #801f27 !important;
+  background: #0b0b13 !important;
   color: #ffffff !important;
   font-weight: 640 !important;
   border-radius: 50px !important;
@@ -83,7 +83,7 @@ body {
 }
 
 .btn-cancel {
-  background: #a1a5ba !Important;
+  background: #878aa0 !Important;
   color: #ffffff !Important;
   font-weight: 600 !Important;
   border-radius: 50px !Important;
@@ -91,9 +91,8 @@ body {
   padding: 10px !Important;
 }
 
-.btn-cancel:active,
 .btn-cancel:hover {
-  background: #8d91a6 !Important;
+  background: #787b91 !Important;
   color: #ffffff !Important;
   font-weight: 640 !Important;
   border-radius: 50px !Important;
@@ -102,7 +101,7 @@ body {
 }
 
 .btn-cancel:active {
-  background: #71758a !Important;
+  background: #606379 !Important;
   color: #ffffff !Important;
   font-weight: 640 !Important;
   border-radius: 50px !Important;
@@ -111,30 +110,22 @@ body {
 }
 
 .btn-pet-nav {
-  background: var(--primary-color) !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
+  background: var(--primary-color);
+  color: #ffffff;
+  font-weight: 600;
   border-radius: 30px;
-  border: none !important;
-  padding: 8px 18px 8px 18px !important;
+  border: none;
+  padding: 8px 18px 8px 18px;
 }
 
 .btn-pet-nav:hover {
-  background: #4153b7 !important;
+  background: #4f66d5 !important;
   color: #ffffff !important;
-  font-weight: 640 !important;
-  border-radius: 30px;
-  border: none !important;
-  /*padding: 4px 10px 4px 10px !important;*/
 }
 
-/*.btn-pet-nav:active {*/
-/*  background: #000000 !important;*/
-/*  color: #aaabb4 !important;*/
-/*  font-weight: 640 !important;*/
-/*  border-radius: 50px !important;*/
-/*  border: none !important;*/
-/*}*/
+.btn-pet-nav:active {
+  background: #394ca6 !important;
+}
 
 
 /* Switch Styles */
