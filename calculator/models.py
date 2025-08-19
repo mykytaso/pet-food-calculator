@@ -12,11 +12,32 @@ class Pet(models.Model):
         ("off", "Off"),
     ]
 
+    PET_ICON_CHOICES = [
+        ("cat_icon.png", "Cat"),
+        ("dog_icon.png", "Dog"),
+        # ("bird", "Bird"),
+        # ("fish", "Fish"),
+        # ("hamster", "Hamster"),
+        # ("rabbit", "Rabbit"),
+        # ("turtle", "Turtle"),
+        # ("snake", "Snake"),
+        # ("lizard", "Lizard"),
+        # ("frog", "Frog"),
+        # ("hedgehog", "Hedgehog"),
+        # ("ferret", "Ferret"),
+        # ("guinea_pig", "Guinea Pig"),
+        # ("chinchilla", "Chinchilla"),
+        # ("tarantula", "Tarantula"),
+        # ("scorpion", "Scorpion"),
+        # ("other", "Other"),
+    ]
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     name = models.CharField(max_length=30)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pets")
     is_default = models.BooleanField(default=False)
     calculate_price = models.CharField(max_length=3, choices=CALCULATE_PRICE_CHOICES, default="off")
+    pet_icon = models.CharField(max_length=30, choices=PET_ICON_CHOICES, default="cat_icon.png")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -33,7 +54,7 @@ class Pet(models.Model):
 
 
 class Food(models.Model):
-    name = models.CharField(max_length=100, blank=True, null=True)
+    name = models.CharField(max_length=20, blank=True, null=True)
     kcal = models.PositiveIntegerField(blank=True, null=True)
     meals = models.PositiveIntegerField(blank=True, null=True)
     meal_size = models.PositiveIntegerField(blank=True, null=True)
