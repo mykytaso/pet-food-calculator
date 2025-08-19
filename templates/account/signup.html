@@ -13,7 +13,7 @@
           </a>
       {% endsetvar %}
       {% element p %}
-          {% blocktranslate %}Already have an account? {{ link }}Sign in{{ end_link }}.{% endblocktranslate %}
+          {% blocktranslate %}Already have an account? {{ link }}Log in{{ end_link }}.{% endblocktranslate %}
       {% endelement %}
       {% if not SOCIALACCOUNT_ONLY %}
           {% url 'account_signup' as action_url %}
@@ -26,7 +26,7 @@
               {% endslot %}
               {% slot actions %}
                   {% element button tags="prominent,signup" type="submit" %}
-                      {% trans "Register" %}
+                      {% trans "Sign up" %}
                   {% endelement %}
               {% endslot %}
           {% endelement %}
