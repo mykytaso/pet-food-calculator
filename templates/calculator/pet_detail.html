@@ -9,9 +9,15 @@
     <!-- Main Title Section -->
     <div class="col-auto shadow" style="border-radius: 30px; background-color: #ffffff; padding: 10px;">
 
-      <div class="row justify-content-center align-items-center">
+      <div class="row justify-content-center align-items-center gap-2">
         <!-- Pet Name -->
-        <div class="col-auto">
+        <div class="col-auto m-0 p-0">
+          <img src="{% static 'images/' %}{{ pet.pet_icon }}"
+          alt="pet food icon"
+          style="width: 40px; height: 40px;"
+          >
+        </div>
+        <div class="col-auto m-0 p-0">
           <span class="box-header"
           >
             {{ pet.name }}
@@ -60,7 +66,7 @@
                     type="submit"
                     style="border-radius: 0 30px 30px 0"
             >
-              Cost: {{ pet.calculate_price }}
+              Cost: {{ pet.calculate_price | upper }}
             </button>
           </form>
         </div>
