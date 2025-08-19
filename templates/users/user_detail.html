@@ -27,16 +27,12 @@
       </div>
 
       <div style="margin: 20px 0;">
-        <a class="btn btn-cancel w-100" href="{% url 'account_logout' %}">Logout</a>
+        <a class="btn btn-primary w-100" href="{% url 'account_logout' %}">Logout</a>
       </div>
 
-      <form method="post"
-            action="{% url 'account_logout' %}"
-            style="margin-top: 46px;"
-      >
-        {% csrf_token %}
-         <button type="submit" class="btn btn-dark w-100">Delete Account</button>
-      </form>
+      <div style="margin-top: 46px;">
+        <a class="btn btn-dark w-100" href="{% url 'users:user-delete' %}">Delete</a>
+      </div>
 
     </div>
   </div>
