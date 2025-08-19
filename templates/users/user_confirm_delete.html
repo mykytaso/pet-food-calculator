@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-auto box">
+
+      <div class="box-header">
+        Delete Account
+      </div>
+
+      <div class="box-content box-content-margin-top">
+        Are you sure you want to delete your account?
+      </div>
+
+      <form method="post">
+        {% csrf_token %}
+        <div>
+          <button type="submit" class="btn btn-dark w-100 box-btn-margin-top">Yes, delete</button>
+        </div>
+        <div>
+          <a href="{% url 'users:user-detail' %}"
+             class="btn btn-cancel w-100"
+             style="margin-top: 28px;"
+          >
+            No, go back
+          </a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
