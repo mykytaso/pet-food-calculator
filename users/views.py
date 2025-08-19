@@ -19,3 +19,11 @@ class UserSettingsView(LoginRequiredMixin, generic.UpdateView):
     def get_object(self, queryset=None):
         return self.request.user
 
+
+
+class UserDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = get_user_model()
+    success_url = reverse_lazy("calculator:home")
+
+    def get_object(self, queryset=None):
+        return self.request.user
