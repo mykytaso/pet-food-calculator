@@ -17,30 +17,25 @@
       <form method="post" class="box-content box-content-margin-top">
         {% csrf_token %}
         {{ form | crispy }}
-
         <input type="submit"
                value="Update"
                class="btn btn-primary w-100 box-btn-under-form-margin-top"
         >
       </form>
 
+      <a href="{% url 'calculator:pet_detail' pet.pk %}"
+         class="btn btn-cancel w-100"
+         style="margin-top: 10px;"
+      >
+        Cancel
+      </a>
 
-      <div>
-        <a href="{% url 'calculator:pet_detail' pet.pk %}"
-           class="btn btn-cancel w-100"
-           style="margin-top: 10px;"
-        >
-          Cancel
-        </a>
-      </div>
-
-      <form action="{% url 'calculator:pet_delete' pet.id %}" class="m-0 p-0">
-        <input type="submit"
-               value="Delete"
-               class="btn btn-dark w-100"
-               style="margin-top: 46px;"
-        >
-      </form>
+      <a href="{% url 'calculator:pet_delete' pet.pk %}"
+         class="btn btn-dark w-100"
+         style="margin-top: 46px;"
+      >
+        Delete
+      </a>
 
     </div>
   </div>
