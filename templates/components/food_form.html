@@ -1,20 +1,29 @@
 <div class="col-auto food-box" id="food-card-{{ food.id }}">
+{% load static %}
 
   <!-- Delete Food -->
   <div class="row align-items-center justify-content-between">
     <div class="col-auto">
-      <span class="food-form-title">
-        <i class="bi bi-fork-knife"></i>
-        {% if food.name %}
-          {% if food.name|length > 5 %}
-            {{ food.name|slice:":5" }}...
-          {% else %}
-            {{ food.name }}
-          {% endif %}
-        {% else %}
-          New
-        {% endif %}
-      </span>
+      <div class="row align-items-center justify-content-start m-0 p-0 gap-2">
+        <div class="col-auto m-0 p-0">
+          <img src="{% static 'images/pet_food_icon.png' %}"
+               alt="pet food icon"
+               style="width: 30px; height: 30px;"
+          >
+        </div>
+        <div class="col-auto m-0 p-0">
+          <span class="food-form-title">
+            {% if food.name %}
+              {% if food.name|length > 8 %}
+                {{ food.name|slice:":8" }}...
+              {% else %}
+                {{ food.name }}
+              {% endif %}
+            {% else %}
+            {% endif %}
+          </span>
+        </div>
+      </div>
     </div>
 
     <form class="col-auto"
@@ -49,6 +58,7 @@
              placeholder="name"
              value="{% if food.name %}{{ food.name }}{% endif %}"
              aria-label="Food name"
+             maxlength="20"
       />
     </div>
 
@@ -107,7 +117,7 @@
   <!-- Results -->
   <div class="row">
     <div class="col"
-         style="margin: 20px 0 0 0;"
+         style="margin: 20px 0 0 0; color: var(--dark-color);"
 {#         style="color: var(--dark-color); font-weight: 700; border-top: 1px solid #8ea6fe;"#}
     >
       <div>
@@ -115,15 +125,15 @@
           <tr>
             <td>Day energy:</td>
             <td>
-              <span class="kcal-per-day">
-                {% if food.kcal_per_day %}{{ food.kcal_per_day }}{% else %}0.00{% endif %} kcal
+              <span class="kcal-per-day" style="margin-left: 8px">
+                {% if food.kcal_per_day %} {{ food.kcal_per_day }}{% else %}0.00{% endif %} kcal
               </span>
             </td>
           </tr>
           <tr {% if pet.calculate_price == 'off' %} hidden {% endif %}>
             <td>Day cost:</td>
             <td>
-              <span class="cost-per-day">
+              <span class="cost-per-day" style="margin-left: 8px">
                 {% if food.cost_per_day %}{{ food.cost_per_day }}{% else %}0.00{% endif %} {{ user.currency }}
               </span>
             </td>
