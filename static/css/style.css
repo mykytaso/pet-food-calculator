@@ -2,7 +2,7 @@
   --primary-color: #5e80fd;
   --secondary-color: #FEC2D9;
   --light-color: #8ea6fe;
-  --dark-color: #312e4e;
+  --dark-color: #363644;
   --box-radius: 20px;
   --food-box-radius: 30px;
 }
@@ -18,7 +18,7 @@ body {
 
 .font-default {
   font-family: "Nunito Sans", sans-serif !important;
-  color: var(--primary-color) !important;
+  color: var(--dark-color) !important;
 }
 
 .color-primary {
@@ -141,9 +141,8 @@ body {
 /* Food Form Styles */
 .food-form-title {
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--dark-color);
-    margin-bottom: 24px;
 }
 
 .food-box {
@@ -154,7 +153,7 @@ body {
   padding: 30px !important;
     margin: 20px;
   font-family: "Nunito Sans", sans-serif !important;
-  color: var(--primary-color) !important;
+  color: var(--dark-color) !important;
 }
 
 .food-form-label {
@@ -162,18 +161,35 @@ body {
   font-weight: 600;
   margin-bottom: 0;
   white-space: nowrap;
+    color: var(--primary-color);
 }
 
 .food-form-field {
     width: 80px;
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--light-color);
     border-radius: 20px;
-    text-align: center !important;
-    color: var(--primary-color) !important;
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 800;
 }
 
 .food-form-field::placeholder {
-    color: var(--light-color) !important;
+    color: var(--light-color);
+    font-weight: 400;
+
+}
+
+.food-form-field:focus {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid var(--primary-color);
+  color: #000000;
+  font-weight: 600;
+  background: #f6f9ff;
+}
+
+.food-form-field:focus::placeholder {
+    color: #0b0b13
 }
 
 .food-form-row {
