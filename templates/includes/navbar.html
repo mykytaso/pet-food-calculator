@@ -38,19 +38,31 @@
 
           <div class="dropdown-menu shadow" style="padding: 20px; border-radius: 20px; border: none;">
             {% for pet in user.pets.all %}
-              <div>
-                <a class="dropdown-link-custom d-block"
-                   href="{% url 'calculator:pet_detail' pk=pet.id %}"
+            <div>
 
-                >
-                  {{ pet.name }}
-                  {% if pet.is_default %}
-                    <span style="font-weight: 400; opacity: 0.5;">
-                      (Default)
-                    </span>
-                  {% endif %}
-                </a>
-              </div>
+              <a class="dropdown-link-custom d-block" href="{% url 'calculator:pet_detail' pk=pet.id %}">
+                <div class="row justify-content-start align-items-center flex-nowrap">
+                  <div class="col-auto m-0 p-0">
+                    <img src="{% static 'images/pets/' %}{{ pet.pet_icon }}"
+                      alt="pet icon"
+                      style="width: 26px; height: 26px; margin-right: 10px;"
+                      >
+                  </div>
+
+                  <div class="col-auto m-0 p-0">
+                    {{ pet.name | title }}
+                  </div>
+
+                  <div class="col-auto m-0 p-0">
+                    {% if pet.is_default %}
+                      <span style="font-weight: 400; opacity: 0.5; margin-left: 6px;">
+                        (Default)
+                      </span>
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+            </div>
             {% endfor %}
 
             <!-- Add Pet Button -->

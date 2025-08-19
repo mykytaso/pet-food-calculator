@@ -24,12 +24,9 @@ class Pet(models.Model):
         # ("lizard", "Lizard"),
         # ("frog", "Frog"),
         # ("hedgehog", "Hedgehog"),
-        # ("ferret", "Ferret"),
         # ("guinea_pig", "Guinea Pig"),
         # ("chinchilla", "Chinchilla"),
-        # ("tarantula", "Tarantula"),
-        # ("scorpion", "Scorpion"),
-        # ("other", "Other"),
+        ("other_icon.png", "Other"),
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
@@ -37,7 +34,7 @@ class Pet(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pets")
     is_default = models.BooleanField(default=False)
     calculate_price = models.CharField(max_length=3, choices=CALCULATE_PRICE_CHOICES, default="off")
-    pet_icon = models.CharField(max_length=30, choices=PET_ICON_CHOICES, default="cat_icon.png")
+    pet_icon = models.CharField(max_length=30, choices=PET_ICON_CHOICES, default="other_icon.png")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

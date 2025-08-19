@@ -1,5 +1,5 @@
-<div class="col-auto food-box" id="food-card-{{ food.id }}">
 {% load static %}
+<div class="col-auto food-box" id="food-card-{{ food.id }}">
 
   <!-- Delete Food -->
   <div class="row align-items-center justify-content-between">
@@ -17,7 +17,7 @@
               {% if food.name|length > 8 %}
                 {{ food.name|slice:":8" }}...
               {% else %}
-                {{ food.name }}
+                {{ food.name|capfirst }}
               {% endif %}
             {% else %}
             {% endif %}
@@ -117,8 +117,7 @@
   <!-- Results -->
   <div class="row">
     <div class="col"
-         style="margin: 20px 0 0 0; color: var(--dark-color);"
-{#         style="color: var(--dark-color); font-weight: 700; border-top: 1px solid #8ea6fe;"#}
+         style="padding: 10px 0 0 0; margin: 10px 10px 0 10px; border-top: 1px solid #d4d5da;"
     >
       <div>
         <table>

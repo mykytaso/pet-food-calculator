@@ -2,133 +2,182 @@
 {% load static %}
 
 {% block body %}
-{#<div class="container-fluid">#}
-{#  <div class="row justify-content-center align-items-center my-4">#}
-{#    <div class="col-auto text-center font-default">#}
-{#      <h1>Home for Guest</h1>#}
-{#      <p>There will be calculator logic but only with JS</p>#}
-{#    </div>#}
-{#  </div>#}
-{#</div>#}
 
+<div class="container-fluid">
 
+  <!-- Title and Edit Button -->
+  <div class="row justify-content-center" style="margin-top:20px">
+    <!-- Main Title Section -->
+    <div class="col-auto shadow" style="border-radius: 30px; background-color: #ffffff; padding: 10px;">
 
+      <div class="row justify-content-center align-items-center"
+           style="margin: 10px 4px 0 4px; padding: 0 0 0 0;"
+      >
 
-  <div class="container-fluid">
-
-
-
-    <div class="row justify-content-center align-items-center" style="margin-top: 32px">
-      <div class="col-auto">
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" role="switch" id="toggle-cost">
-          <label class="form-check-label" for="toggle-cost" style="font-weight: 700; color: #5e80fd">Add cost calculation</label>
-        </div>
-      </div>
-    </div>
-
-    <div class="row justify-content-center align-items-center" style="margin-top: 30px; margin-bottom: 20px">
-      <div class="col-auto">
-        <button class="btn" id="add-row" style="background: #5e80fd; color: #ffffff; font-weight: 700; border-radius: 50px;">
-          Add Food
-        </button>
-      </div>
-    </div>
-
-    <!-- This row is used to display the food rows dynamically -->
-    <div class="row justify-content-center" id="food-rows" style="color: #5e80fd;"></div>
-
-    <!-- Results -->
-    <div class="row justify-content-center align-items-center mt-5" style="color: #5e80fd;">
-      <div class="col-auto bg-white rounded-5 p-4 box-shadow">
-        Results:
-
-        <div>
-          <strong>Total kcal: <span id="total-kcal">0</span></strong>
-        </div>
-
-        <div>
-          <strong>Total cost: <span id="total-cost">0</span></strong>
-        </div>
-
-      </div>
-    </div>
-
-
-    <!-- Template for a single food row -->
-    <template id="food-row-template">
-      <div class="col-auto m-3 bg-white rounded-5 food-row box-shadow">
-
-        <!-- Delete Row -->
-        <div class="row align-items-center justify-content-between px-3" style="margin-top: 18px; margin-bottom: 14px;">
-
-          <div class="col-auto">
-            <i class="bi bi-fork-knife"></i>
-          </div>
-
-          <div class="col-auto">
-            <a href="#" class="text-decoration-none delete-row text-secondary align-self-end mb-3">
-              <span style="color: #5e80fd">
-                <i class="bi bi-x-lg"></i>
-              </span>
-            </a>
-          </div>
+        <!-- Add Food -->
+        <div class="col-auto m-0 p-0">
+          <button class="btn btn-pet-nav"
+                  id="add-row"
+                  style="border-radius: 30px 0 0 30px"
+          >
+            + Add food
+          </button>
         </div>
 
 
-
-        <div class="d-flex align-items-center gap-2 px-3">
-          <label class="text-nowrap mb-0 field-text" style="width: 120px; font-weight: 600;">Food kcal/kg</label>
-          <input class="form-control form-control-sm rounded-4 kcalPerKg" placeholder="kcal/kg" aria-label="Kcal per kg" style="width: 80px; border-color: #5e80fd;" />
-        </div>
-
-
-        <div class="d-flex align-items-center gap-2 mt-2 px-3">
-          <label class="text-nowrap mb-0" style="width: 120px; font-weight: 600;">Meals per day</label>
-          <input class="form-control form-control-sm rounded-4 mealsNumber" placeholder="meals" aria-label="Meals per day" style="width: 80px; border-color: #5e80fd;" />
-        </div>
-
-
-        <div class="d-flex align-items-center gap-2 mt-2 px-3">
-          <label class="text-nowrap mb-0" style="width: 120px; font-weight: 600;">Meal size</label>
-          <input class="form-control form-control-sm rounded-4 portionSize" placeholder="grams" aria-label="Meal size" style="width: 80px; border-color: #5e80fd;" />
-        </div>
-
-
-        <div class="d-flex align-items-center gap-2 mt-2 px-3 cost-field">
-          <label class="text-nowrap mb-0" style="width: 120px; font-weight: 600;">Package size</label>
-          <input class="form-control form-control-sm rounded-4 packageSize" placeholder="grams" aria-label="Package size" style="width: 80px; border-color: #5e80fd;" />
-        </div>
-
-
-        <div class="d-flex align-items-center gap-2 mt-2 px-3 cost-field">
-          <label class="text-nowrap mb-0" style="width: 120px; font-weight: 600;">Package price</label>
-          <input class="form-control form-control-sm rounded-4 price" placeholder="$" aria-label="Package price" style="width: 80px; border-color: #5e80fd;" />
-        </div>
-
-
-
-        <div class="row" style="margin-top: 20px;">
-          <div class="col" style="padding-top: 20px; padding-bottom: 20px; font-weight: 700; border-top: 1px solid #8ea6fe;">
-            <div class="px-3">
-              <strong>Kcal per day:</strong> <span class="kcal-output">0</span>
-            </div>
-            <div class="cost-field px-3">
-              <strong>Cost per day:</strong> <span class="cost-output">0</span>
-            </div>
+        <!-- Calculate Price Button -->
+        <div class="col-auto m-0 p-0">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="toggle-cost">
+            <label class="form-check-label" for="toggle-cost" style="font-weight: 700; color: #5e80fd"></label>
           </div>
         </div>
 
       </div>
-    </template>
-
-
-    <script src="/static/js/script.js"></script>
-
+    </div>
   </div>
 
 
+  <!-- This row is used to display the food rows dynamically -->
+  <div class="row justify-content-center" id="food-rows" style="color: #5e80fd;"></div>
 
 
+  <!-- Result Section -->
+  <div class="row justify-content-center font-default mb-5">
+    <div class="col-auto food-box">
 
+      <table style="font-weight: 700; margin-bottom: 20px; color: var(--dark-color);">
+        <tr>
+          <td style="padding: 6px 0">
+            Total day energy:
+          </td>
+          <td style="padding: 6px 0"><span id="total-kcal" style="padding-left: 10px">0</span></td>
+        </tr>
+        <tr>
+          <td>Total day cost:</td>
+          <td><span id="total-cost" style="padding-left: 10px">0.00</span></td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+
+
+  <!-- Template for a single food row -->
+  <template id="food-row-template">
+    <div class="col-auto food-box food-row">
+
+      <!-- Delete Row -->
+      <div class="row align-items-center justify-content-between">
+        <div class="col-auto">
+          <div class="row align-items-center justify-content-start m-0 p-0 gap-2">
+            <div class="col-auto m-0 p-0">
+              <img src="{% static 'images/pet_food_icon.png' %}"
+                   alt="pet food icon"
+                   style="width: 30px; height: 30px;"
+              >
+            </div>
+            <div class="col-auto m-0 p-0">
+              <span class="food-form-title">
+                Food
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-auto">
+          <a class="btn p-0 m-0 text-decoration-none text-secondary align-self-end delete-row">
+            <span style="color: var(--dark-color);">
+              <i class="bi bi-x-lg"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+
+
+      <div class="food-form-row">
+        <label class="food-form-label">Food kcal/kg</label>
+        <input name="kcal"
+               autocomplete="off"
+               class="form-control form-control-sm food-form-field kcalPerKg"
+               placeholder="kcal/kg"
+               aria-label="Kcal per kg" />
+      </div>
+
+
+      <div class="food-form-row">
+        <label class="food-form-label">Meals per day</label>
+        <input name="meals"
+               autocomplete="off"
+               class="form-control form-control-sm food-form-field mealsNumber"
+               placeholder="meals"
+               aria-label="Meals per day" />
+      </div>
+
+
+      <div class="food-form-row">
+        <label class="food-form-label">Meal size</label>
+        <input name="meal_size"
+               autocomplete="off"
+               class="form-control form-control-sm food-form-field portionSize"
+               placeholder="grams"
+               aria-label="Meal size" />
+      </div>
+
+
+      <div class="food-form-row cost-field">
+        <label class="food-form-label">Package size</label>
+        <input name="package_size"
+               autocomplete="off"
+               class="form-control form-control-sm food-form-field packageSize"
+               placeholder="grams"
+               aria-label="Package size" />
+      </div>
+
+
+      <div class="food-form-row cost-field">
+        <label class="food-form-label">Package price</label>
+        <input name="package_price"
+               autocomplete="off"
+               class="form-control form-control-sm food-form-field price"
+               placeholder="$"
+               aria-label="Package price" />
+      </div>
+
+
+      <!-- Results -->
+      <div class="row">
+        <div class="col"
+             style="padding: 10px 0 0 0; margin: 10px 10px 0 10px; border-top: 1px solid #d4d5da;"
+        >
+          <div>
+            <table>
+              <tr>
+                <td>Day energy:</td>
+                <td>
+                  <span class="kcal-per-day" style="margin-left: 8px">
+                    <span class="kcal-output">0</span>
+                  </span>
+                </td>
+              </tr>
+              <tr {% if pet.calculate_price == 'off' %} hidden {% endif %}>
+                <td>Day cost:</td>
+                <td>
+                  <span class="cost-per-day" style="margin-left: 8px">
+                    </strong> <span class="cost-output">0</span>
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </template>
+
+
+  <script src="/static/js/script.js"></script>
+
+</div>
 {% endblock %}
