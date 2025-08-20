@@ -1,131 +1,131 @@
 :root {
-  --primary-color: #5e80fd;
-  --secondary-color: #FEC2D9;
-  --light-color: #909296;
-  --dark-color: #363644;
-  --box-radius: 20px;
-  --food-box-radius: 30px;
+    --primary-color: #5e80fd;
+    --secondary-color: #FEC2D9;
+    --light-color: #909296;
+    --dark-color: #363644;
+    --box-radius: 20px;
+    --food-box-radius: 30px;
 }
 
 .hidden {
-  display: none !important;
+    display: none !important;
 }
 
 body {
-  font-family: "Nunito Sans", sans-serif;
+    font-family: "Nunito Sans", sans-serif;
     color: var(--dark-color);
-  background-color: var(--secondary-color) !important;
+    background-color: var(--secondary-color) !important;
 }
 
 .font-default {
-  font-family: "Nunito Sans", sans-serif !important;
-  color: var(--dark-color) !important;
+    font-family: "Nunito Sans", sans-serif !important;
+    color: var(--dark-color) !important;
 }
 
 .color-primary {
-  color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
 }
 
 
 .form-check-input:checked {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .btn-primary {
-  background: var(--primary-color) !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
-  border-radius: 50px !important;
-  border: none !important;
-  padding: 10px !important;
+    background: var(--primary-color) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    border-radius: 50px !important;
+    border: none !important;
+    padding: 10px !important;
 }
 
 /* Button Styles */
 .btn-primary:hover {
-  background: #5476ef !important;
-  color: #ffffff !important;
-  font-weight: 640 !important;
-  border-radius: 50px !important;
-  border: none !important;
+    background: #5476ef !important;
+    color: #ffffff !important;
+    font-weight: 640 !important;
+    border-radius: 50px !important;
+    border: none !important;
 }
 
 .btn-primary:active {
-  background: #364ca3 !important;
-  color: #ffffff !important;
-  font-weight: 640 !important;
-  border-radius: 50px !important;
-  border: none !important;
+    background: #364ca3 !important;
+    color: #ffffff !important;
+    font-weight: 640 !important;
+    border-radius: 50px !important;
+    border: none !important;
 }
 
 .btn-dark {
-  background: var(--dark-color) !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
-  border-radius: 50px !important;
-  border: none !important;
+    background: var(--dark-color) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    border-radius: 50px !important;
+    border: none !important;
     padding: 10px !important;
 }
 
 .btn-dark:hover {
-  background: #25233d !important;
-  color: #ffffff !important;
-  font-weight: 640 !important;
-  border-radius: 50px !important;
-  border: none !important;
+    background: #25233d !important;
+    color: #ffffff !important;
+    font-weight: 640 !important;
+    border-radius: 50px !important;
+    border: none !important;
 }
 
 .btn-dark:active {
-  background: #0b0b13 !important;
-  color: #ffffff !important;
-  font-weight: 640 !important;
-  border-radius: 50px !important;
-  border: none !important;
+    background: #0b0b13 !important;
+    color: #ffffff !important;
+    font-weight: 640 !important;
+    border-radius: 50px !important;
+    border: none !important;
 }
 
 .btn-cancel {
-  background: #878aa0 !Important;
-  color: #ffffff !Important;
-  font-weight: 600 !Important;
-  border-radius: 50px !Important;
-  border: none !Important;
-  padding: 10px !Important;
+    background: #878aa0 !Important;
+    color: #ffffff !Important;
+    font-weight: 600 !Important;
+    border-radius: 50px !Important;
+    border: none !Important;
+    padding: 10px !Important;
 }
 
 .btn-cancel:hover {
-  background: #787b91 !Important;
-  color: #ffffff !Important;
-  font-weight: 640 !Important;
-  border-radius: 50px !Important;
-  border: none !Important;
-  padding: 10px !Important;
+    background: #787b91 !Important;
+    color: #ffffff !Important;
+    font-weight: 640 !Important;
+    border-radius: 50px !Important;
+    border: none !Important;
+    padding: 10px !Important;
 }
 
 .btn-cancel:active {
-  background: #606379 !Important;
-  color: #ffffff !Important;
-  font-weight: 640 !Important;
-  border-radius: 50px !Important;
-  border: none !Important;
-  padding: 10px !Important;
+    background: #606379 !Important;
+    color: #ffffff !Important;
+    font-weight: 640 !Important;
+    border-radius: 50px !Important;
+    border: none !Important;
+    padding: 10px !Important;
 }
 
 .btn-pet-nav {
-  background: var(--primary-color);
-  color: #ffffff;
-  font-weight: 600;
-  border-radius: 30px;
-  border: none;
-  padding: 8px 18px 8px 18px;
+    background: var(--primary-color);
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 30px;
+    border: none;
+    padding: 8px 18px 8px 18px;
 }
 
 .btn-pet-nav:hover {
-  background: #4f66d5 !important;
-  color: #ffffff !important;
+    background: #4f66d5 !important;
+    color: #ffffff !important;
 }
 
 .btn-pet-nav:active {
-  background: #394ca6 !important;
+    background: #394ca6 !important;
 }
 
 
@@ -133,9 +133,9 @@ body {
 .switch,
 .switch:focus,
 .switch:active {
-  box-shadow: none !important;
-  outline: none;
-  border: none !important;
+    box-shadow: none !important;
+    outline: none;
+    border: none !important;
 }
 
 
@@ -147,22 +147,22 @@ body {
 }
 
 .food-box {
-  background-color: #ffffff !important;
-  border: none !important;
-  border-radius: var(--food-box-radius) !important;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
-  padding: 30px !important;
-  margin: 20px;
-  font-family: "Nunito Sans", sans-serif !important;
-  color: var(--dark-color) !important;
+    background-color: #ffffff !important;
+    border: none !important;
+    border-radius: var(--food-box-radius) !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+    padding: 30px !important;
+    margin: 20px;
+    font-family: "Nunito Sans", sans-serif !important;
+    color: var(--dark-color) !important;
 }
 
 .food-form-label {
-  width: 120px;
-  font-weight: 600;
-  margin-bottom: 0;
-  white-space: nowrap;
-  color: var(--dark-color);
+    width: 120px;
+    font-weight: 600;
+    margin-bottom: 0;
+    white-space: nowrap;
+    color: var(--dark-color);
 }
 
 .food-form-field {
@@ -181,12 +181,12 @@ body {
 }
 
 .food-form-field:focus {
-  outline: none;
-  box-shadow: none;
-  border: 1px solid var(--light-color);
-  color: var(--dark-color);
-  font-weight: 600;
-  background: #F1F2F5;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid var(--light-color);
+    color: var(--dark-color);
+    font-weight: 600;
+    background: #F1F2F5;
 }
 
 /*.food-form-field:focus::placeholder {*/
@@ -194,41 +194,41 @@ body {
 /*}*/
 
 .food-form-row {
-  display: flex;
-  align-items: center;
-  margin: 10px 0 10px 0;
+    display: flex;
+    align-items: center;
+    margin: 10px 0 10px 0;
 }
 
 
 /* Auth Form Styles */
 .auth-form-field {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: 2px solid var(--primary-color);
-  border-radius: var(--box-radius);
-  background-color: white;
-  outline: none;
-  box-shadow: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--box-radius);
+    background-color: white;
+    outline: none;
+    box-shadow: none;
 }
 
 .auth-form-field:focus {
-  border-color: var(--primary-color);
-  outline: none;
-  box-shadow: none;
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: none;
 }
 
 
 /* Box Styles */
 .box {
-  background-color: #ffffff !important;
-  border: none !important;
-  border-radius: var(--box-radius) !important;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
-  padding: 38px 48px 38px 48px !important;
-  margin-top: 48px !important;
-  font-family: "Nunito Sans", sans-serif !important;
-  color: var(--primary-color) !important;
+    background-color: #ffffff !important;
+    border: none !important;
+    border-radius: var(--box-radius) !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+    padding: 38px 48px 38px 48px !important;
+    margin-top: 48px !important;
+    font-family: "Nunito Sans", sans-serif !important;
+    color: var(--primary-color) !important;
 }
 
 .box-header {
@@ -254,21 +254,21 @@ body {
 }
 
 .box-shadow {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .shadow {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
 }
 
 
 /* Alert Styles */
 .alert-info,
 .alert-warning {
-  background-color: rgba(255, 255, 255, 0.5) !important;
-  color: rgba(0, 0, 0, 0.6) !important;
-  border: none !important;
-  border-radius: 30px !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+    border: none !important;
+    border-radius: 30px !important;
 }
 
 
@@ -280,22 +280,22 @@ body {
 
 /* Drop Down Meny in Navbar */
 .dropdown-menu {
-  white-space: nowrap !important;
+    white-space: nowrap !important;
 }
 
 .dropdown-link-custom {
-  color: var(--dark-color) !important;
-  font-weight: 600 !important;
-  text-decoration: none !important;
-  padding: 10px 20px 10px 20px;
-  border-radius: 30px;
+    color: var(--dark-color) !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    padding: 10px 20px 10px 20px;
+    border-radius: 30px;
 }
 
 .dropdown-link-custom:hover {
-  color: var(--dark-color) !important;
-  font-weight: 600 !important;
-  text-decoration: none !important;
-  padding: 10px 20px 10px 20px;
-  border-radius: 30px;
+    color: var(--dark-color) !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    padding: 10px 20px 10px 20px;
+    border-radius: 30px;
     background-color: #e7ebfd;
 }

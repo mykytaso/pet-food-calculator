@@ -16,7 +16,6 @@ class Pet(models.Model):
         ("cat_icon.png", "Cat"),
         ("dog_icon.png", "Dog"),
         # ("bird", "Bird"),
-        # ("fish", "Fish"),
         # ("hamster", "Hamster"),
         # ("rabbit", "Rabbit"),
         # ("turtle", "Turtle"),
