@@ -1,80 +1,97 @@
 {% load static %}
 
-<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: var(--primary-color);">
+<nav class="navbar navbar-dark navbar-expand-md" style="background-color: var(--primary-color);">
   <div class="container-fluid">
-    <a class="navbar-brand" style="color: #ffffff; font-size: 30px; font-weight: 900;" href={% url "calculator:home" %}><i class="bi bi-twitter"></i> Pet Food Calculator</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand"
+       style="color: #ffffff; font-size: 30px; font-weight: 900;"
+       href={% url "calculator:home" %}
+    >
+      <i class="bi bi-twitter"></i> Pet Food Calculator
+    </a>
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-
+      <ul class="navbar-nav me-auto">
         {% if not user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link text-white" href={% url "account_login" %}>Log in</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'account_login' %}">Log in</a>
+          </li>
 
-        <li class="nav-item">
-          <a class="nav-link text-white" href={% url "account_signup" %}>Register</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'account_signup' %}">Register</a>
+          </li>
         {% endif %}
 
         {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link text-white" href={% url "users:user-detail" %}>Profile</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'users:user-detail' %}">Profile</a>
+          </li>
 
-        <!-- Pets Dropdown Menu -->
-        <li class="nav-item dropdown">
+          <!-- Pets Dropdown Menu -->
+          <li class="nav-item dropdown">
 
-          <a class="nav-link dropdown-toggle"
-             href="#"
-             role="button"
-             data-bs-toggle="dropdown"
-             aria-expanded="false"
-          >
-            Your Pets
-          </a>
+            <a class="nav-link dropdown-toggle"
+               href="#"
+               role="button"
+               data-bs-toggle="dropdown"
+               aria-expanded="false"
+            >
+              Your Pets
+            </a>
 
-          <div class="dropdown-menu shadow" style="padding: 20px; border-radius: 20px; border: none;">
-            {% for pet in user.pets.all %}
-            <div>
+            <div class="dropdown-menu shadow" style="padding: 20px; border-radius: 20px; border: none;">
+              {% for pet in user.pets.all %}
+                <div>
 
-              <a class="dropdown-link-custom d-block" href="{% url 'calculator:pet_detail' pk=pet.id %}">
-                <div class="row justify-content-start align-items-center flex-nowrap">
-                  <div class="col-auto m-0 p-0">
-                    <img src="{% static 'images/pets/' %}{{ pet.pet_icon }}"
-                      alt="pet icon"
-                      style="width: 26px; height: 26px; margin-right: 10px;"
-                      >
-                  </div>
+                  <a class="dropdown-link-custom d-block" href="{% url 'calculator:pet_detail' pk=pet.id %}">
+                    <div class="row justify-content-start align-items-center flex-nowrap">
+                      <div class="col-auto m-0 p-0">
+                        <img src="{% static 'images/pets/' %}{{ pet.pet_icon }}"
+                             alt="pet icon"
+                             style="width: 26px; height: 26px; margin-right: 10px;"
+                        >
+                      </div>
 
-                  <div class="col-auto m-0 p-0">
-                    {{ pet.name | title }}
-                  </div>
+                      <div class="col-auto m-0 p-0">
+                        {{ pet.name | title }}
+                      </div>
 
-                  <div class="col-auto m-0 p-0">
-                    {% if pet.is_default %}
-                      <span style="font-weight: 400; opacity: 0.5; margin-left: 6px;">
+                      <div class="col-auto m-0 p-0">
+                        {% if pet.is_default %}
+                          <span style="font-weight: 400; opacity: 0.5; margin-left: 6px;">
                         (Default)
                       </span>
-                    {% endif %}
-                  </div>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </a>
                 </div>
-              </a>
-            </div>
-            {% endfor %}
+              {% endfor %}
 
-            <!-- Add Pet Button -->
-            <div style="margin-top: 20px;">
-              {% include "includes/add_pet_button.html" %}
-            </div>
+              <!-- Add Pet Button -->
+              <div style="margin-top: 20px;">
+                {% include "includes/add_pet_button.html" %}
+              </div>
 
-          </div>
-        </li>
+            </div>
+          </li>
         {% endif %}
 
       </ul>
+      {% if user.is_authenticated %}
+        <div class="mt-4 mt-md-0 me-md-3" style="margin: 0 20px 0 0;">
+          {% include "includes/bmc.html" %}
+        </div>
+      {% endif %}
     </div>
   </div>
 </nav>

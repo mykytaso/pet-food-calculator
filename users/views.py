@@ -1,8 +1,15 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
+from PetFoodCalculator import settings
+from calculator.helpers import (
+    tm_user_visited_bmc_first_time,
+    tm_user_visited_bmc_again,
+    tm_guest_visited_bmc_first_time
+)
 from users.forms import UserSettingsForm
 
 
@@ -27,3 +34,16 @@ class UserDeleteView(LoginRequiredMixin, generic.DeleteView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class BuyMeCoffeeView(generic.View):
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated and not request.user.has_visited_buy_me_coffee:
+            request.user.has_visited_buy_me_coffee = True
+            request.user.save(update_fields=["has_visited_buy_me_coffee"])
+            tm_user_visited_bmc_first_time(request.user)
+        elif request.user.is_authenticated and request.user.has_visited_buy_me_coffee:
+            tm_user_visited_bmc_again(request.user)
+        else:
+            tm_guest_visited_bmc_first_time()
+        return redirect(getattr(settings, "BUY_ME_A_COFFEE_LINK"))

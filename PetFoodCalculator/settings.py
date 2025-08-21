@@ -160,3 +160,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Crispy Forms configuration
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+# Buy Me a Coffee link
+BUY_ME_A_COFFEE_LINK = os.getenv("BUY_ME_A_COFFEE_LINK")
+
+
+# Telegram Bot configuration
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
