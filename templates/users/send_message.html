@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+  <div class="container-fluid">
+
+    <div class="row justify-content-center align-items-center">
+      <div class="col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4 box">
+        <div class="box-header">
+          Contact Me
+        </div>
+        <div style="margin: 10px 0 10px 0">
+          Have questions, suggestions, or feedback? Send me a message through this form, and I’ll get back to you as
+          soon as possible!
+        </div>
+
+        <div class="box-content">
+          <form method="POST" action="{% url 'users:send-message' %}">
+            {% csrf_token %}
+
+            <!-- Email Input -->
+            {% if not user.is_authenticated %}
+              <label class="form-label box-content-margin-top" for="email">Email</label>
+              <input class="form-control"
+                     id="email"
+                     type="email"
+                     name="email"
+                     placeholder="Your email (optional)"
+              >
+            {% else %}
+              <input type="email" name="email" value="{{ user.email }}" hidden aria-label="Email">
+            {% endif %}
+
+            <!-- Message Input -->
+            <label class="form-label box-content-margin-top" for="message">Message</label>
+            <textarea class="form-control"
+                      id="message"
+                      type="text"
+                      rows="6"
+                      name="message"
+                      maxlength="1000"
+                      required
+            ></textarea>
+
+            <div>
+              <input class="btn btn-primary box-btn-margin-top w-100" type="submit" value="Send">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+{% endblock %}

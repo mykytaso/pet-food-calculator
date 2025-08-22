@@ -1,6 +1,7 @@
 from datetime import timedelta
 
 import requests
+from celery import shared_task
 from django.utils.timezone import now
 
 from PetFoodCalculator import settings
@@ -24,36 +25,49 @@ def send_telegram_message(message: str) -> None:
         raise Exception(f"Error sending message: {response.text}")
 
 
-def tm_new_user_created(user) -> None:
+def tm_new_user_created(date_joined, email: str) -> None:
     send_telegram_message(
         f"{MESSAGE_TITLE}"
+        f"⏱️ {(date_joined - timedelta(hours=4)).strftime('%Y-%m-%d %H:%M:%S')}\n"
         f"👨‍🦰 <b>New User Registered</b>\n"
-        f"⏱️{(user.date_joined - timedelta(hours=4)).strftime('%Y-%m-%d %H:%M:%S')}\n"
-        f"📧 {user.email}"
+        f"📧 {email}"
     )
 
 
-def tm_user_visited_bmc_first_time(user) -> None:
+@shared_task
+def tm_user_visited_bmc_first_time(email: str) -> None:
     send_telegram_message(
         f"{MESSAGE_TITLE}"
+        f"⏱️ {(now() - timedelta(hours=4)).strftime('%Y-%m-%d %H:%M:%S')}\n"
         f"👨‍🦰 <b>User Visited ☕️BMC the first time</b>\n"
-        f"⏱️{(now() - timedelta(hours=4)).strftime('%Y-%m-%d %H:%M:%S')}\n"
-        f"📧 {user.email}"
+        f"📧 {email}"
     )
 
 
-def tm_user_visited_bmc_again(user):
+@shared_task
+def tm_user_visited_bmc_again(email: str) -> None:
     send_telegram_message(
         f"{MESSAGE_TITLE}"
+        f"⏱️ {(now() - timedelta(hours=4)).strftime('%Y-%m-%d %H:%M:%S')}\n"
         f"👨‍🦰 <b>User Visited ☕️BMC again</b>\n"
-        f"⏱️{(now() - timedelta(hours=4)).strftime('%Y-%m-%d %H:%M:%S')}\n"
-        f"📧 {user.email}"
+        f"📧 {email}"
     )
 
 
+@shared_task
 def tm_guest_visited_bmc_first_time():
     send_telegram_message(
         f"{MESSAGE_TITLE}"
+        f"⏱️ {(now() - timedelta(hours=4)).strftime('%Y-%m-%d %H:%M:%S')}\n"
         f"👻 <b>Guest Visited ☕️BMC</b>\n"
-        f"⏱️{(now() - timedelta(hours=4)).strftime('%Y-%m-%d %H:%M:%S')}\n"
+    )
+
+
+@shared_task
+def tm_send_message(email: str, message: str) -> None:
+    send_telegram_message(
+        f"{MESSAGE_TITLE}"
+        f"⏱️ {(now() - timedelta(hours=4)).strftime('%Y-%m-%d %H:%M:%S')}\n"
+        f"📧 <b>Message from: {email}</b>\n"
+        f"💬 {message}"
     )

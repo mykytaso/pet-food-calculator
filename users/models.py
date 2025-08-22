@@ -1,5 +1,4 @@
 import uuid
-from datetime import timedelta
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
@@ -8,7 +7,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from calculator.helpers import tm_new_user_created
-from calculator.helpers.telegram import send_telegram_message
 
 
 class User(AbstractUser):
@@ -48,4 +46,4 @@ class User(AbstractUser):
 @receiver(post_save, sender=get_user_model())
 def new_user_created_telegram_notification(sender, instance, created, **kwargs):
     if created:
-        tm_new_user_created(instance)
+        tm_new_user_created(instance.date_joined, instance.email)

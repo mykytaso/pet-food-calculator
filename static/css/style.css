@@ -22,11 +22,6 @@ body {
     color: var(--dark-color) !important;
 }
 
-.color-primary {
-    color: var(--primary-color) !important;
-}
-
-
 .form-check-input:checked {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
@@ -228,7 +223,7 @@ body {
     padding: 38px 48px 38px 48px !important;
     margin-top: 48px !important;
     font-family: "Nunito Sans", sans-serif !important;
-    color: var(--primary-color) !important;
+    color: var(--dark-color) !important;
 }
 
 .box-header {
@@ -259,6 +254,14 @@ body {
 
 .shadow {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+}
+
+.box-pet-menu {
+    border-radius: 30px;
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 20px 0 0 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -298,4 +301,9 @@ body {
     padding: 10px 20px 10px 20px;
     border-radius: 30px;
     background-color: #e7ebfd;
+}
+
+
+.helptext {
+  visibility: hidden;
 }

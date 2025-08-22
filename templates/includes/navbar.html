@@ -1,6 +1,6 @@
 {% load static %}
 
-<nav class="navbar navbar-dark navbar-expand-md" style="background-color: var(--primary-color);">
+<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: var(--primary-color);">
   <div class="container-fluid">
     <a class="navbar-brand"
        style="color: #ffffff; font-size: 30px; font-weight: 900;"
@@ -85,13 +85,18 @@
             </div>
           </li>
         {% endif %}
-
       </ul>
+
+      <div class="nav-item me-5 my-3 my-lg-0">
+        <a class="nav-link text-white" href="{% url 'users:send-message' %}">Contact me</a>
+      </div>
+
       {% if user.is_authenticated %}
-        <div class="mt-4 mt-md-0 me-md-3" style="margin: 0 20px 0 0;">
+        <div class="me-4 my-3 my-lg-0">
           {% include "includes/bmc.html" %}
         </div>
       {% endif %}
+
     </div>
   </div>
 </nav>
