@@ -3,8 +3,7 @@
     --secondary-color: #FEC2D9;
     --light-color: #909296;
     --dark-color: #363644;
-    --box-radius: 20px;
-    --food-box-radius: 30px;
+    --box-radius: 30px;
 }
 
 .hidden {
@@ -12,8 +11,8 @@
 }
 
 body {
-    font-family: "Nunito Sans", sans-serif;
-    color: var(--dark-color);
+    font-family: "Nunito Sans", sans-serif !important;
+    color: var(--dark-color) !important;
     background-color: var(--secondary-color) !important;
 }
 
@@ -123,6 +122,20 @@ body {
     background: #394ca6 !important;
 }
 
+.btn-close-custom {
+    filter: brightness(0) saturate(100%) invert(16%) sepia(28%) saturate(481%) hue-rotate(200deg) brightness(91%) contrast(82%);
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-close-custom:hover {
+    filter: brightness(0) saturate(100%) invert(0%) sepia(4%) saturate(15%) hue-rotate(219deg) brightness(105%) contrast(100%);
+}
+
 
 /* Switch Styles */
 .switch,
@@ -144,7 +157,7 @@ body {
 .food-box {
     background-color: #ffffff !important;
     border: none !important;
-    border-radius: var(--food-box-radius) !important;
+    border-radius: var(--box-radius) !important;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
     padding: 30px !important;
     margin: 20px;
@@ -257,7 +270,7 @@ body {
 }
 
 .box-pet-menu {
-    border-radius: 30px;
+    border-radius: var(--box-radius);
     background-color: #ffffff;
     padding: 20px;
     margin: 20px 0 0 0;
@@ -305,5 +318,5 @@ body {
 
 
 .helptext {
-  visibility: hidden;
+    visibility: hidden;
 }

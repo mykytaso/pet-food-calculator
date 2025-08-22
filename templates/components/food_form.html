@@ -26,16 +26,14 @@
       </div>
     </div>
 
-    <form class="col-auto"
+    <form class="col-auto align-self-start"
           hx-post="{% url 'calculator:food_delete' food.id %}"
           hx-target="#food-card-{{ food.id }}"
           hx-swap="outerHTML"
     >
       {% csrf_token %}
-      <button type="submit" class="btn p-0 m-0 text-decoration-none text-secondary align-self-end">
-        <span style="color: var(--dark-color);">
-          <i class="bi bi-x-lg"></i>
-        </span>
+      <button type="submit" class="btn p-0 m-0 btn-close-custom">
+        <img src="{% static 'images/x-lg.svg' %}" alt="delete icon" class="d-block"/>
       </button>
     </form>
   </div>
@@ -47,8 +45,8 @@
         hx-trigger="click from:#calculate"
   >
     {% csrf_token %}
-    <input type="hidden" name="pet_id" value="{{ pet.id }}" />
-    <input type="hidden" name="food_id" value="{{ food.id }}" />
+    <input type="hidden" name="pet_id" value="{{ pet.id }}"/>
+    <input type="hidden" name="food_id" value="{{ food.id }}"/>
 
     <div class="food-form-row">
       <label class="food-form-label">Food name</label>
@@ -69,7 +67,7 @@
              class="form-control form-control-sm food-form-field"
              placeholder="kcal/kg"
              value="{% if food.kcal %}{{ food.kcal }}{% endif %}"
-             aria-label="Kcal per kg" />
+             aria-label="Kcal per kg"/>
     </div>
 
     <div class="food-form-row">
@@ -79,7 +77,7 @@
              class="form-control form-control-sm food-form-field"
              placeholder="meals"
              value="{% if food.meals %}{{ food.meals }}{% endif %}"
-             aria-label="Meals per day" />
+             aria-label="Meals per day"/>
     </div>
 
     <div class="food-form-row">
@@ -89,7 +87,7 @@
              class="form-control form-control-sm food-form-field"
              placeholder="grams"
              value="{% if food.meal_size %}{{ food.meal_size }}{% endif %}"
-             aria-label="Meal size" />
+             aria-label="Meal size"/>
     </div>
 
     {% if pet.calculate_price == 'on' %}
@@ -100,7 +98,7 @@
                class="form-control form-control-sm food-form-field"
                placeholder="grams"
                value="{% if food.package_size %}{{ food.package_size }}{% endif %}"
-               aria-label="Package size" />
+               aria-label="Package size"/>
       </div>
 
       <div class="food-form-row cost-field">
@@ -109,7 +107,7 @@
                autocomplete="off"
                class="form-control form-control-sm food-form-field"
                placeholder="{{ user.currency }}" value="{% if food.package_price %}{{ food.package_price }}{% endif %}"
-               aria-label="Package price" />
+               aria-label="Package price"/>
       </div>
     {% endif %}
   </form>
