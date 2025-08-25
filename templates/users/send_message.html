@@ -1,16 +1,31 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block body %}
+
 
   <div class="container-fluid">
 
     <div class="row justify-content-center align-items-center">
       <div class="col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4 box">
-        <div class="box-header">
-          Contact Me
+
+        <div class="row justify-content-center align-items-center ">
+          <div class="col-auto p-0">
+            <img src="{% static 'images/send_message_icon.png' %}"
+                 alt="pet icon"
+                 style="width: 40px; height: 40px;"
+            >
+          </div>
+          <div class="col-auto p-0" style="margin-left: 10px;">
+          <span class="box-header"
+          >
+            Contact Me
+          </span>
+          </div>
         </div>
+
         <div style="margin: 10px 0 10px 0">
           Have questions, suggestions, or feedback? Send me a message through this form, and I’ll get back to you as
           soon as possible!

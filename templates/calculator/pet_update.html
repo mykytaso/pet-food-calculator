@@ -5,40 +5,52 @@
 
 
 {% block body %}
-<div class="container-fluid">
+  <div class="container-fluid">
 
-  <div class="row justify-content-center align-items-center">
-    <div class="col-auto box">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-auto box">
 
-      <div class="box-header">
-        Pet Profile
-      </div>
+        <div class="row justify-content-center align-items-center px-2 pb-2">
+          <!-- Pet Icon + Name -->
+          <div class="col-auto p-0">
+            <img src="{% static 'images/pets/' %}{{ pet.pet_icon }}"
+                 alt="pet icon"
+                 style="width: 40px; height: 40px;"
+            >
+          </div>
+          <div class="col-auto p-0" style="margin-left: 10px;">
+          <span class="box-header"
+          >
+            {{ pet.name | title }}
+          </span>
+          </div>
+        </div>
 
-      <form method="post" class="box-content box-content-margin-top">
-        {% csrf_token %}
-        {{ form | crispy }}
-        <input type="submit"
-               value="Update"
-               class="btn btn-primary w-100 box-btn-under-form-margin-top"
+        <form method="post" class="box-content box-content-margin-top">
+          {% csrf_token %}
+          {{ form | crispy }}
+          <input type="submit"
+                 value="Update"
+                 class="btn btn-primary w-100 box-btn-under-form-margin-top"
+          >
+        </form>
+
+        <a href="{% url 'calculator:pet_detail' pet.pk %}"
+           class="btn btn-cancel w-100"
+           style="margin-top: 10px;"
         >
-      </form>
+          Cancel
+        </a>
 
-      <a href="{% url 'calculator:pet_detail' pet.pk %}"
-         class="btn btn-cancel w-100"
-         style="margin-top: 10px;"
-      >
-        Cancel
-      </a>
+        <a href="{% url 'calculator:pet_delete' pet.pk %}"
+           class="btn btn-dark w-100"
+           style="margin-top: 46px;"
+        >
+          Delete
+        </a>
 
-      <a href="{% url 'calculator:pet_delete' pet.pk %}"
-         class="btn btn-dark w-100"
-         style="margin-top: 46px;"
-      >
-        Delete
-      </a>
-
+      </div>
     </div>
-  </div>
 
-</div>
+  </div>
 {% endblock %}
