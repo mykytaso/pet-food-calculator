@@ -1,0 +1,63 @@
+services:
+  pfc_app: &app
+    image: ghcr.io/mykytaso/pet-food-calculator:${GITHUB_SHA:-latest}
+    command: make docker-run-production
+    container_name: pfc_app
+    networks:
+      - pfc_network
+    environment:
+      - MODE=production
+      - PYTHONUNBUFFERED=1
+      - DEBUG=false
+      - APP_HOST=https://foodcalculator.pet
+      - REDIS_DB=0
+      - REDIS_HOST=redis
+      - POSTGRES_DB=pfc_db
+      - POSTGRES_USER=mykyta
+      - POSTGRES_HOST=host.docker.internal
+      - POSTGRES_PASSWORD
+    env_file:
+      - .env
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - redis
+    ports:
+      - "127.0.0.1:8814:8814"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100M"
+        max-file: "3"
+
+  redis:
+    image: redis:alpine
+    container_name: pfc_redis
+    restart: unless-stopped
+    networks:
+      - pfc_network
+    environment:
+      - REDIS_DB=0
+      - REDIS_HOST=redis
+      - ALLOW_EMPTY_PASSWORD=yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  celery:
+    <<: *app
+    command: celery -A calculator worker --loglevel=info
+    container_name: pfc_celery
+    networks:
+      - pfc_network
+    depends_on:
+      - redis
+    restart: on-failure
+    ports: []
+
+networks:
+  pfc_network:
+    driver: bridge
