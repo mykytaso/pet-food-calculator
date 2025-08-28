@@ -1,0 +1,52 @@
+services:
+  pfc_app: &app
+    build:
+      dockerfile: Dockerfile
+      context: .
+    command: make docker-run-dev
+    container_name: pfc_app
+    environment:
+      - MODE=dev
+      - DEBUG=true
+      - PYTHONUNBUFFERED=1
+      - POSTGRES_DB=pfc_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=postgres
+      - REDIS_DB=0
+      - REDIS_HOST=redis
+    restart: always
+    volumes:
+      - .:/app:delegated # enable hot code reload in debug mode
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "8000:8000"
+
+
+  postgres:
+    image: postgres:14
+    container_name: pfc_postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=pfc_db
+
+  redis:
+    image: redis:alpine
+    container_name: pfc_redis
+    restart: unless-stopped
+    environment:
+      - REDIS_DB=0
+      - REDIS_HOST=redis
+      - ALLOW_EMPTY_PASSWORD=yes
+
+  celery:
+    <<: *app
+    command: celery -A calculator worker --loglevel=info
+    container_name: pfc_celery
+    depends_on:
+      - redis
+    restart: on-failure
+    ports: []
