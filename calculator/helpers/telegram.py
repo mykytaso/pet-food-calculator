@@ -1,3 +1,4 @@
+import time
 from datetime import timedelta
 
 import requests
@@ -25,6 +26,7 @@ def send_telegram_message(message: str) -> None:
         raise Exception(f"Error sending message: {response.text}")
 
 
+@shared_task
 def tm_new_user_created(date_joined, email: str) -> None:
     send_telegram_message(
         f"{MESSAGE_TITLE}"
