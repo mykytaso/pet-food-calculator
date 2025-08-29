@@ -9,13 +9,13 @@ services:
       - MODE=production
       - PYTHONUNBUFFERED=1
       - DEBUG=false
-#      - APP_HOST=https://foodcalculator.pet
+      - APP_HOST=https://foodcalculator.pet
       - REDIS_DB=0
       - REDIS_HOST=redis
+      - POSTGRES_DB=pfc_db
       - POSTGRES_HOST=host.docker.internal
       - POSTGRES_USER=mykyta
-      - POSTGRES_PASSWORD=1qazcde3
-      - POSTGRES_DB=pfc_db
+      - POSTGRES_PASSWORD
     env_file:
       - .env
     restart: unless-stopped
@@ -24,7 +24,8 @@ services:
     depends_on:
       - redis
     ports:
-      - "127.0.0.1:8814:8814"
+#      - "127.0.0.1:8814:8814"
+      - "8814:8814"
     logging:
       driver: "json-file"
       options:
