@@ -16,7 +16,7 @@ services:
 #      - POSTGRES_USER=mykyta
 #      - POSTGRES_HOST=host.docker.internal
 #      - POSTGRES_PASSWORD
-      - POSTGRES_HOST=host.docker.internal
+      - POSTGRES_HOST=pfc_postgres
       - POSTGRES_USER=mykyta
       - POSTGRES_PASSWORD=1qazcde3
       - POSTGRES_DB=pfc_db
