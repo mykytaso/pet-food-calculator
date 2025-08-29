@@ -12,11 +12,7 @@ services:
 #      - APP_HOST=https://foodcalculator.pet
       - REDIS_DB=0
       - REDIS_HOST=redis
-#      - POSTGRES_DB=pfc_db
-#      - POSTGRES_USER=mykyta
-#      - POSTGRES_HOST=host.docker.internal
-#      - POSTGRES_PASSWORD
-      - POSTGRES_HOST=pfc_postgres
+      - POSTGRES_HOST=host.docker.internal
       - POSTGRES_USER=mykyta
       - POSTGRES_PASSWORD=1qazcde3
       - POSTGRES_DB=pfc_db
