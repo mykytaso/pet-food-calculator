@@ -24,8 +24,7 @@ services:
     depends_on:
       - redis
     ports:
-#      - "127.0.0.1:8814:8814"
-      - "8814:8814"
+      - "127.0.0.1:8814:8814"
     logging:
       driver: "json-file"
       options:
