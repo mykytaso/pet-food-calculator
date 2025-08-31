@@ -57,7 +57,7 @@ services:
       - pfc_network
     depends_on:
       - redis
-    restart: on-failure
+    restart: always
     ports: []
 
 networks:
