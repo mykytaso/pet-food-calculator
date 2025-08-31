@@ -9,7 +9,7 @@ docker-run-dev:  ## Runs dev server in docker
 	python3 manage.py runserver 127.0.0.1:8000
 
 docker-run-production: docker-migrate
-	gunicorn PetFoodCalculator.asgi:application -w 2 -k uvicorn.workers.UvicornWorker --bind=0.0.0.0:8814 --capture-output --log-level debug --access-logfile - --error-logfile -
+	gunicorn PetFoodCalculator.asgi:application -w 2 -k uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000 --capture-output --log-level debug --access-logfile - --error-logfile -
 
 docker-migrate:
 	python3 manage.py migrate
