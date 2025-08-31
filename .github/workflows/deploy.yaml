@@ -31,6 +31,17 @@ jobs:
           secret_SECRET_KEY: ${{ secrets.SECRET_KEY }}
           secret_APP_HOST: ${{ secrets.APP_HOST }}
           secret_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          secret_BUY_ME_A_COFFEE_LINK: ${{ secrets.BUY_ME_A_COFFEE_LINK }}
+          secret_CSRF_TRUSTED_ORIGINS: ${{ secrets.CSRF_TRUSTED_ORIGINS }}
+          secret_DEBUG: ${{ secrets.DEBUG }}
+          secret_GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          secret_GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
+          secret_PGDATA: ${{ secrets.PGDATA }}
+          secret_PRODUCTION_SSH_HOST: ${{ secrets.PRODUCTION_SSH_HOST }}
+          secret_PRODUCTION_SSH_KEY: ${{ secrets.PRODUCTION_SSH_KEY }}
+          secret_PRODUCTION_SSH_USERNAME: ${{ secrets.PRODUCTION_SSH_USERNAME }}
+          secret_TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          secret_TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       - run: echo "GITHUB_SHA=$GITHUB_SHA" >> .env
       - run: echo "${{ secrets.PRODUCTION_SSH_KEY }}" > ${{ env.SSH_KEY_PATH }} && chmod 600 ${{ env.SSH_KEY_PATH }}
       - run: scp -o StrictHostKeyChecking=no -i ${{ env.SSH_KEY_PATH }} .env ${{ secrets.PRODUCTION_SSH_USERNAME }}@${{ secrets.PRODUCTION_SSH_HOST }}:/home/mykyta/pet-food-calculator/.env
