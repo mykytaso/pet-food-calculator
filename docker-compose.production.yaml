@@ -51,7 +51,7 @@ services:
 
   celery:
     <<: *app
-    command: celery -A calculator worker --loglevel=info
+    command: celery -A calculator worker --loglevel=info --concurrency=2
     container_name: pfc_celery
     networks:
       - pfc_network
