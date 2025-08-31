@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY") or "not so secret"
 DEBUG = (os.getenv("DEBUG") != "false")
 
-ALLOWED_HOSTS = ["*", "127.0.0.1", "localhost", "0.0.0.0"]
+ALLOWED_HOSTS = ["*", "127.0.0.1", "localhost", "0.0.0.0", "foodcalculator.pet"]
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
@@ -93,15 +93,8 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# STATIC_URL = "/static/"
-# if os.getenv("MODE", "dev") == "production":
-#     STATIC_ROOT = BASE_DIR / "static"
-# else:
-#     STATICFILES_DIRS = [BASE_DIR / "static"]
-
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-
 
 
 # Default primary key field type
