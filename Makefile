@@ -10,7 +10,7 @@ docker-run-dev:  ## Runs dev server in docker
 
 docker-run-production: docker-migrate
     cp -r /app/static /tmp/
-	gunicorn PetFoodCalculator.asgi:application -w 2 -k uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000 --capture-output --log-level debug --access-logfile - --error-logfile -
+    gunicorn PetFoodCalculator.asgi:application -w 2 -k uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000 --capture-output --log-level debug --access-logfile - --error-logfile -
 
 docker-migrate:
 	python3 manage.py migrate
