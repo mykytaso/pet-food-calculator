@@ -22,7 +22,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
-      - ./static:/app/static
+      - ./static:/tmp/static
     depends_on:
       - redis
     ports:
