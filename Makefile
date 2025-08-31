@@ -6,7 +6,7 @@ run-dev:  ## Runs dev server
 docker-run-dev:  ## Runs dev server in docker
 	python3 ./utils/wait_for_postgres.py
 	python3 manage.py migrate
-	python3 manage.py runserver 127.0.0.1:8000
+	python3 manage.py runserver 0.0.0.0:8000
 
 docker-run-production: docker-migrate
 	gunicorn PetFoodCalculator.asgi:application -w 2 -k uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000 --capture-output --log-level debug --access-logfile - --error-logfile -
